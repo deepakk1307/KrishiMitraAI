@@ -1,0 +1,11 @@
+{
+  "name": "KrishiMitra AI",
+  "description": "AI-powered agricultural companion for Indian farmers with crop pathology disease diagnosis, real-time APMC mandi prices, weather advisories, and government scheme navigation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

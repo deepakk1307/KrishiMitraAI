@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>KrishiMitra AI - Intelligent Farming Companion</title>
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <!-- Google Fonts required by Stitch UI Design -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Stitch Exact Theme Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#004d63",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f7f2f8",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#fdf8fd",
+            "on-tertiary-fixed": "#052100",
+            "primary-fixed": "#bce9ff",
+            "on-surface": "#1c1b1f",
+            "inverse-on-surface": "#f4eff5",
+            "on-background": "#1c1b1f",
+            "on-error": "#ffffff",
+            "secondary-container": "#a4a6fe",
+            "secondary-fixed": "#e1dfff",
+            "on-tertiary-container": "#265e13",
+            "on-primary": "#ffffff",
+            "surface": "#fdf8fd",
+            "error": "#ba1a1a",
+            "tertiary-container": "#98d77d",
+            "surface-container": "#f1ecf2",
+            "on-secondary-fixed-variant": "#3b3d8e",
+            "tertiary-fixed-dim": "#98d77d",
+            "on-tertiary-fixed-variant": "#1a5206",
+            "tertiary-fixed": "#b3f496",
+            "on-surface-variant": "#48454f",
+            "on-primary-container": "#005a73",
+            "outline": "#797580",
+            "inverse-surface": "#313034",
+            "secondary": "#5455a8",
+            "on-primary-fixed": "#001f29",
+            "surface-container-high": "#ece6ec",
+            "outline-variant": "#cac4d0",
+            "on-secondary-fixed": "#0c0763",
+            "on-secondary-container": "#363788",
+            "secondary-fixed-dim": "#c1c1ff",
+            "tertiary": "#40842b",
+            "primary": "#006783",
+            "surface-tint": "#006783",
+            "error-container": "#ffdad6",
+            "primary-container": "#52c5ea",
+            "surface-container-highest": "#e6e0e6",
+            "background": "#fdf8fd",
+            "inverse-primary": "#62d4fc"
+          },
+          fontFamily: {
+            "headline-sm": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "headline-md": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "headline-lg": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "body-sm": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "body-md": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "body-lg": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "label-sm": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "label-md": ["Inter", "Noto Sans Devanagari", "sans-serif"],
+            "label-lg": ["Inter", "Noto Sans Devanagari", "sans-serif"]
+          },
+          borderRadius: {
+            "none": "0px",
+            "xs": "4px",
+            "sm": "8px",
+            "md": "12px",
+            "lg": "16px",
+            "xl": "28px",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin-mobile": "16px",
+            "margin-desktop": "24px",
+            "gutter": "16px",
+            "base": "8px",
+            "2x": "16px",
+            "3x": "24px",
+            "4x": "32px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Centralized Multilingual i18n Translation Dictionary -->
+  <script src="/i18n.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(253, 248, 253, 0) 0%, #fdf8fd 100%);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(202, 196, 208, 0.4);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .glow-breathe {
+      animation: pulse-subtle 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-start antialiased selection:bg-primary/20">
+
+  <!-- Mobile Frame Container -->
+  <div id="app-viewport" class="w-full max-w-md min-h-screen bg-surface flex flex-col relative shadow-2xl overflow-x-hidden">
+    
+    <!-- Dynamic View Containers rendered via Router -->
+    <div id="view-landing" class="hidden w-full h-full max-w-md mx-auto bg-surface flex flex-col shadow-lg overflow-hidden md:rounded-xl md:h-[795px] my-auto"></div>
+    <div id="view-register" class="hidden w-full max-w-md min-h-screen flex flex-col p-margin-mobile relative"></div>
+    <div id="view-home" class="hidden w-full max-w-md min-h-screen flex flex-col pb-32"></div>
+    <div id="view-weather" class="hidden w-full max-w-md min-h-screen flex flex-col pb-32"></div>
+    <div id="view-mandi" class="hidden w-full max-w-md min-h-screen flex flex-col pb-32"></div>
+    <div id="view-schemes" class="hidden w-full max-w-md min-h-screen flex flex-col pb-32"></div>
+    <div id="view-crop" class="hidden w-full max-w-md min-h-screen flex flex-col pb-32"></div>
+  </div>
+
+  <!-- Global Toast Notification -->
+  <div id="global-toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-[110] hidden bg-inverse-surface text-inverse-on-surface px-5 py-3 rounded-full shadow-lg font-label-md text-sm flex items-center gap-2 transition-all duration-300">
+    <span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span>
+    <span id="toast-message">Message</span>
+  </div>
+
+  <!-- Global Profile & Language Switcher Modal -->
+  <div id="profile-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[105] hidden flex items-center justify-center p-4">
+    <div class="bg-surface rounded-2xl w-full max-w-md p-6 shadow-2xl border border-outline-variant flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-outline-variant pb-3">
+        <h3 id="modal-profile-title" class="font-headline-sm text-lg font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">account_circle</span>
+          Farmer Profile & Settings
+        </h3>
+        <button onclick="closeProfileModal()" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-variant text-on-surface-variant">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Language Selector in Profile Modal -->
+      <div class="bg-surface-container p-4 rounded-xl flex flex-col gap-2 border border-outline-variant/50">
+        <label id="modal-lang-label" class="font-label-md text-sm font-bold text-on-surface">Preferred Language / पसंदीदा भाषा</label>
+        <div class="grid grid-cols-2 gap-2 mt-1">
+          <button id="btn-lang-en" onclick="setAppLanguage('English')" class="h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 transition-all">
+            <span class="material-symbols-outlined text-[18px]">language</span>
+            English
+          </button>
+          <button id="btn-lang-hi" onclick="setAppLanguage('Hindi')" class="h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 transition-all">
+            <span class="material-symbols-outlined text-[18px]">translate</span>
+            हिन्दी
+          </button>
+        </div>
+        <p class="text-xs text-on-surface-variant mt-1" id="modal-lang-desc">
+          Switches the entire interface & AI assistant replies immediately.
+        </p>
+      </div>
+
+      <!-- Farmer Details Display -->
+      <div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-2 text-sm">
+        <div class="flex justify-between py-1 border-b border-outline-variant/30">
+          <span class="text-on-surface-variant" id="modal-lbl-name">Farmer Name:</span>
+          <span class="font-semibold text-on-surface" id="modal-val-name">Ramesh Kumar</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-outline-variant/30">
+          <span class="text-on-surface-variant" id="modal-lbl-loc">Location:</span>
+          <span class="font-semibold text-on-surface" id="modal-val-loc">Lucknow, UP</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-outline-variant/30">
+          <span class="text-on-surface-variant" id="modal-lbl-crop">Primary Crop:</span>
+          <span class="font-semibold text-on-surface" id="modal-val-crop">Wheat</span>
+        </div>
+        <div class="flex justify-between py-1">
+          <span class="text-on-surface-variant" id="modal-lbl-land">Land Size:</span>
+          <span class="font-semibold text-on-surface" id="modal-val-land">2 Acres</span>
+        </div>
+      </div>
+
+      <div class="flex gap-2 mt-2">
+        <button onclick="handleLogout()" id="modal-btn-logout" class="flex-1 h-12 bg-error-container text-on-error-container border border-error/30 rounded-xl font-headline-sm text-sm font-bold shadow-sm hover:bg-error/20 flex items-center justify-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-[18px]">logout</span>
+          <span id="modal-btn-logout-text">Logout</span>
+        </button>
+        <button onclick="closeProfileModal()" id="modal-btn-done" class="flex-1 h-12 bg-primary text-on-primary rounded-xl font-headline-sm text-sm font-bold shadow-md hover:bg-primary/90 transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Floating AI Assistant Modal / Drawer (Stitch Design) -->
+  <div id="assistant-drawer" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] hidden flex items-end justify-center">
+    <div class="bg-surface-container-lowest w-full max-w-md rounded-t-2xl p-margin-mobile flex flex-col max-h-[85vh] shadow-2xl border-t border-outline-variant animate-in slide-in-from-bottom duration-300">
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant/40">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined fill-icon text-[20px]">smart_toy</span>
+          </div>
+          <div>
+            <h3 id="drawer-title" class="font-headline-sm text-[16px] text-primary font-bold">KrishiMitra AI Assistant</h3>
+            <span id="drawer-subtitle" class="font-label-md text-[11px] text-on-surface-variant">Bilingual Agro-Intelligence</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <!-- Drawer Language Quick Switch Button -->
+          <button onclick="toggleQuickLanguage()" class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-bold text-primary border border-outline-variant/60 flex items-center gap-1 hover:bg-primary-container/30 transition-colors">
+            <span class="material-symbols-outlined text-[14px]">translate</span>
+            <span id="drawer-lang-tag">हिन्दी</span>
+          </button>
+
+          <button id="close-assistant-btn" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-variant text-on-surface-variant">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Assistant Conversation Log -->
+      <div id="assistant-chat-messages" class="flex-1 overflow-y-auto py-4 space-y-3 min-h-[220px] max-h-[360px]">
+        <div class="flex gap-2 items-start" id="assistant-welcome-bubble">
+          <div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">KM</div>
+          <div class="bg-surface-container p-3 rounded-2xl rounded-tl-none border border-outline-variant/30 text-on-surface text-body-md text-[14px]" id="assistant-welcome-text">
+            Namaste! I am KrishiMitra AI. You can ask me about today's weather, crop diseases, Agmarknet mandi rates, or eligible government schemes.
+          </div>
+        </div>
+      </div>
+
+      <!-- Assistant Quick Action Chips -->
+      <div class="flex gap-1.5 overflow-x-auto py-2 border-t border-outline-variant/20 no-scrollbar" id="assistant-quick-chips">
+        <button onclick="sendAssistantQuery(getChipQuery('weather'))" class="bg-surface-container px-3 py-1 rounded-full text-xs font-label-md text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container whitespace-nowrap transition-colors" id="chip-weather-btn">🌦️ Weather</button>
+        <button onclick="sendAssistantQuery(getChipQuery('mandi'))" class="bg-surface-container px-3 py-1 rounded-full text-xs font-label-md text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container whitespace-nowrap transition-colors" id="chip-mandi-btn">📈 Mandi Rates</button>
+        <button onclick="sendAssistantQuery(getChipQuery('crop'))" class="bg-surface-container px-3 py-1 rounded-full text-xs font-label-md text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container whitespace-nowrap transition-colors" id="chip-crop-btn">🌱 Crop Check</button>
+        <button onclick="sendAssistantQuery(getChipQuery('schemes'))" class="bg-surface-container px-3 py-1 rounded-full text-xs font-label-md text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container whitespace-nowrap transition-colors" id="chip-schemes-btn">🏛️ Govt Schemes</button>
+      </div>
+
+      <!-- Assistant Input Form -->
+      <form id="assistant-chat-form" class="flex items-center gap-2 pt-2" onsubmit="event.preventDefault(); handleAssistantFormSubmit();">
+        <input id="assistant-chat-input" type="text" placeholder="Ask KrishiMitra anything..." class="flex-1 h-12 bg-surface rounded-xl border border-outline-variant px-4 text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm" />
+        <button type="button" id="assistant-mic-btn" onclick="toggleVoiceAssistant()" class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center hover:bg-secondary-fixed transition-colors">
+          <span class="material-symbols-outlined fill-icon text-[22px]">mic</span>
+        </button>
+        <button type="submit" class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-md hover:bg-primary/90 transition-colors">
+          <span class="material-symbols-outlined fill-icon text-[20px]">send</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Floating AI Assistant Trigger Button (Level 3 Shadow, Stitch Position) -->
+  <button id="global-floating-ai-btn" aria-label="Open AI Assistant" onclick="openAssistantDrawer()" class="fixed bottom-20 right-4 md:bottom-6 md:right-6 w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center z-40 shadow-[0_8px_20px_rgba(0,103,131,0.35)] hover:scale-105 active:scale-95 transition-all duration-300 group glow-breathe">
+    <span class="material-symbols-outlined fill-icon text-[28px]">smart_toy</span>
+  </button>
+
+  <!-- Global Shared Bottom Navigation Bar (Stitch Design) -->
+  <nav id="global-bottom-nav" class="fixed bottom-0 w-full max-w-md z-50 bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_12px_rgba(0,0,0,0.06)] flex justify-around items-center h-16 pb-safe px-base">
+    <button onclick="navigate('/home')" id="nav-item-home" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 rounded-xl px-3 py-1 h-full flex-1">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <span class="font-label-md text-[10px] mt-0.5" id="nav-label-home">Home</span>
+    </button>
+    <button onclick="navigate('/crop-advisory')" id="nav-item-crop" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 rounded-xl px-3 py-1 h-full flex-1">
+      <span class="material-symbols-outlined text-[24px]">potted_plant</span>
+      <span class="font-label-md text-[10px] mt-0.5" id="nav-label-crop">Crop</span>
+    </button>
+    <button onclick="navigate('/mandi-intelligence')" id="nav-item-mandi" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 rounded-xl px-3 py-1 h-full flex-1">
+      <span class="material-symbols-outlined text-[24px]">storefront</span>
+      <span class="font-label-md text-[10px] mt-0.5" id="nav-label-mandi">Mandi</span>
+    </button>
+    <button onclick="navigate('/scheme-finder')" id="nav-item-schemes" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 rounded-xl px-3 py-1 h-full flex-1">
+      <span class="material-symbols-outlined text-[24px]">description</span>
+      <span class="font-label-md text-[10px] mt-0.5" id="nav-label-schemes">Schemes</span>
+    </button>
+  </nav>
+
+  <!-- Application State & Script Orchestrator -->
+  <script>
+    // Global Application State
+    const AppState = {
+      token: localStorage.getItem('km_auth_token') || '',
+      farmer: JSON.parse(localStorage.getItem('km_farmer_profile') || 'null') || {
+        id: 'farmer-ramesh-kumar',
+        name: 'Ramesh Kumar',
+        state: 'Uttar Pradesh',
+        district: 'Lucknow',
+        crop: 'Wheat',
+        land_size: 2,
+        land_unit: 'acres',
+        language: 'Hindi',
+        village: 'Malihabad'
+      },
+      currentPath: window.location.pathname || '/',
+      conversationHistory: [],
+      weatherData: null,
+      mandiData: null,
+      schemesData: null,
+      registrationDraft: {
+        fullName: '',
+        state: 'Uttar Pradesh',
+        district: 'Lucknow',
+        language: 'Hindi',
+        landSize: 2,
+        landUnit: 'Acres',
+        mainCrop: 'Wheat',
+        soilType: 'Alluvial'
+      },
+      isRecordingVoice: false
+    };
+
+    // Initialize Active Language
+    window.__CURRENT_APP_LANG = normalizeLang(AppState.farmer.language || 'Hindi');
+
+    // Display Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('global-toast');
+      const text = document.getElementById('toast-message');
+      if (toast && text) {
+        text.innerText = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3200);
+      }
+    }
+
+    // Language Switcher Handlers
+    function getActiveLang() {
+      return normalizeLang(AppState.farmer?.language || window.__CURRENT_APP_LANG || 'hi');
+    }
+
+    function toggleQuickLanguage() {
+      const current = getActiveLang();
+      const nextLang = current === 'en' ? 'Hindi' : 'English';
+      setAppLanguage(nextLang);
+    }
+
+    async function setAppLanguage(newLang) {
+      const normalized = normalizeLang(newLang);
+      const standardName = normalized === 'en' ? 'English' : 'Hindi';
+      
+      // 1. Update State
+      AppState.farmer.language = standardName;
+      AppState.registrationDraft.language = standardName;
+      window.__CURRENT_APP_LANG = normalized;
+      localStorage.setItem('km_farmer_profile', JSON.stringify(AppState.farmer));
+
+      // 2. Update Backend Profile
+      try {
+        await apiFetch('/api/farmer/profile', {
+          method: 'PUT',
+          body: JSON.stringify({ language: standardName })
+        });
+      } catch (e) {
+        console.warn('Backend language sync fallback:', e);
+      }
+
+      // 3. Update Nav & Drawer UI
+      updateAllStaticLabels();
+
+      // 4. Re-render Active Route
+      renderCurrentRoute();
+
+      // 5. Close Profile modal if open
+      closeProfileModal();
+
+      // 6. Show localized toast
+      showToast(t('langChangeSuccess'));
+    }
+
+    function updateAllStaticLabels() {
+      const lang = getActiveLang();
+      
+      // Bottom navigation labels
+      const navHome = document.getElementById('nav-label-home');
+      const navCrop = document.getElementById('nav-label-crop');
+      const navMandi = document.getElementById('nav-label-mandi');
+      const navSchemes = document.getElementById('nav-label-schemes');
+      if (navHome) navHome.innerText = t('navHome');
+      if (navCrop) navCrop.innerText = t('navCrop');
+      if (navMandi) navMandi.innerText = t('navMandi');
+      if (navSchemes) navSchemes.innerText = t('navSchemes');
+
+      // Assistant Drawer labels
+      const drawerTitle = document.getElementById('drawer-title');
+      const drawerSub = document.getElementById('drawer-subtitle');
+      const drawerTag = document.getElementById('drawer-lang-tag');
+      const input = document.getElementById('assistant-chat-input');
+      const welcomeText = document.getElementById('assistant-welcome-text');
+      if (drawerTitle) drawerTitle.innerText = t('assistantTitle');
+      if (drawerSub) drawerSub.innerText = t('bilingualSubtitle');
+      if (drawerTag) drawerTag.innerText = lang === 'en' ? 'हिन्दी' : 'English';
+      if (input) input.placeholder = t('placeholderAssistantInput');
+      if (welcomeText) welcomeText.innerText = t('assistantWelcome');
+
+      // Drawer chips
+      const chipWeather = document.getElementById('chip-weather-btn');
+      const chipMandi = document.getElementById('chip-mandi-btn');
+      const chipCrop = document.getElementById('chip-crop-btn');
+      const chipSchemes = document.getElementById('chip-schemes-btn');
+      if (chipWeather) chipWeather.innerText = t('chipWeather');
+      if (chipMandi) chipMandi.innerText = t('chipMandi');
+      if (chipCrop) chipCrop.innerText = t('chipCrop');
+      if (chipSchemes) chipSchemes.innerText = t('chipSchemes');
+
+      // Profile modal button states
+      const btnLogoutText = document.getElementById('modal-btn-logout-text');
+      if (btnLogoutText) btnLogoutText.innerText = t('logout');
+      const btnDoneText = document.getElementById('modal-btn-done');
+      if (btnDoneText) btnDoneText.innerText = t('close');
+
+      const btnEn = document.getElementById('btn-lang-en');
+      const btnHi = document.getElementById('btn-lang-hi');
+      if (btnEn && btnHi) {
+        if (lang === 'en') {
+          btnEn.className = "h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 bg-primary text-on-primary border-primary shadow-sm";
+          btnHi.className = "h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 bg-surface text-on-surface border-outline-variant hover:border-primary";
+        } else {
+          btnHi.className = "h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 bg-primary text-on-primary border-primary shadow-sm";
+          btnEn.className = "h-12 rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 font-bold border-2 bg-surface text-on-surface border-outline-variant hover:border-primary";
+        }
+      }
+    }
+
+    function openProfileModal() {
+      const modal = document.getElementById('profile-modal');
+      if (!modal) return;
+      
+      const lang = getActiveLang();
+      document.getElementById('modal-profile-title').innerHTML = `
+        <span class="material-symbols-outlined">account_circle</span>
+        ${t('profileSettings')}
+      `;
+      document.getElementById('modal-lang-label').innerText = `${t('preferredLanguage')} (English / हिन्दी)`;
+      document.getElementById('modal-val-name').innerText = AppState.farmer.name || 'Ramesh Kumar';
+      document.getElementById('modal-val-loc').innerText = `${AppState.farmer.district}, ${AppState.farmer.state}`;
+      document.getElementById('modal-val-crop').innerText = translateCrop(AppState.farmer.crop);
+      document.getElementById('modal-val-land').innerText = `${AppState.farmer.land_size} ${translateUnit(AppState.farmer.land_unit)}`;
+      document.getElementById('modal-btn-done').innerText = t('close');
+      const btnLogout = document.getElementById('modal-btn-logout-text');
+      if (btnLogout) btnLogout.innerText = t('logout');
+
+      updateAllStaticLabels();
+      modal.classList.remove('hidden');
+    }
+
+    function closeProfileModal() {
+      const modal = document.getElementById('profile-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleLogout() {
+      closeProfileModal();
+      AppState.token = '';
+      localStorage.removeItem('km_auth_token');
+      localStorage.removeItem('km_farmer_profile');
+      showToast(getActiveLang() === 'en' ? 'Logged out successfully' : 'सफलतापूर्वक लॉगआउट किया गया');
+      navigate('/landing');
+    }
+
+    function getChipQuery(type) {
+      const isEn = getActiveLang() === 'en';
+      if (type === 'weather') return isEn ? 'What is the weather advisory for today?' : 'आज के लिए मौसम और सिंचाई सलाह क्या है?';
+      if (type === 'mandi') return isEn ? `Check ${AppState.farmer.crop} mandi prices in ${AppState.farmer.district}` : `${AppState.farmer.district} मंडी में ${translateCrop(AppState.farmer.crop)} के ताजा भाव बताएं`;
+      if (type === 'crop') return isEn ? `How to protect ${AppState.farmer.crop} from pests and diseases?` : `${translateCrop(AppState.farmer.crop)} की फसल को कीट और रोगों से कैसे बचाएं?`;
+      if (type === 'schemes') return isEn ? `Find subsidy schemes for my ${AppState.farmer.land_size} acre farm` : `मेरे ${AppState.farmer.land_size} एकड़ खेत के लिए सरकारी सब्सिडी योजनाएं बताएं`;
+      return '';
+    }
+
+    // Top Header Component Generator for all inner views
+    function renderAppHeader(showBack = true) {
+      const lang = getActiveLang();
+      const otherLangLabel = lang === 'en' ? 'हिन्दी' : 'English';
+      return `
+        <header class="w-full top-0 sticky bg-surface shadow-sm flex items-center justify-between px-margin-mobile h-14 z-40 transition-colors duration-200">
+          <div class="flex items-center gap-2">
+            ${showBack ? `
+              <button onclick="navigate('/home')" class="text-primary hover:bg-surface-variant/50 p-2 rounded-full transition-colors duration-200" aria-label="Back">
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+            ` : ''}
+            <div class="flex items-center gap-1.5 cursor-pointer" onclick="navigate('/home')">
+              <span class="material-symbols-outlined text-primary text-[22px] fill-icon">psychiatry</span>
+              <h1 class="font-headline-sm text-headline-sm text-primary font-bold">${t('appName')}</h1>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <!-- Language Quick Switcher Pill -->
+            <button onclick="toggleQuickLanguage()" title="Switch Language / भाषा बदलें" class="h-8 px-2.5 rounded-full bg-surface-container border border-outline-variant flex items-center gap-1 text-xs font-bold text-primary hover:bg-primary-container/40 transition-colors shadow-sm">
+              <span class="material-symbols-outlined text-[14px]">translate</span>
+              <span>${otherLangLabel}</span>
+            </button>
+
+            <!-- Profile Avatar / Settings -->
+            <button onclick="openProfileModal()" class="hover:bg-surface-variant/50 p-1 rounded-full transition-colors duration-200 relative" title="${t('profileSettings')}">
+              <img alt="User profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzvOTY1weiso97ND6nyG2HE9Arexl-Ka3-VyS02upo_neAqn2Bx9yhpXfOeeX06XxQ4Pm1ckQXiAN4R_6k4TNNEmudZNBcgUMqylHPrgr6VnyKdravOkP-hxe6Y4Eq-UrM5V0fapREMu0pj2n2UVyVPL5DqJl--DP7XR8YKVMwWVDw3lpmifsbGC7yABTRchTORELquhYLNavoOSK5eRFDHXjxxmytde-5nJorGtBLxaFEC7xV2bp-">
+            </button>
+          </div>
+        </header>
+      `;
+    }
+
+    // Auto-login default session if none exists
+    async function ensureAuthenticated() {
+      if (!AppState.token) {
+        try {
+          const res = await fetch('/api/auth/demo-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ demoId: 'farmer-ramesh-kumar' })
+          });
+          const data = await res.json();
+          if (data.token) {
+            AppState.token = data.token;
+            AppState.farmer = data.farmer || AppState.farmer;
+            window.__CURRENT_APP_LANG = normalizeLang(AppState.farmer.language || 'Hindi');
+            localStorage.setItem('km_auth_token', data.token);
+            localStorage.setItem('km_farmer_profile', JSON.stringify(AppState.farmer));
+          }
+        } catch (e) {
+          console.warn('Auto auth initialized in offline fallback mode:', e);
+        }
+      }
+    }
+
+    // Authenticated API Helper
+    async function apiFetch(endpoint, options = {}) {
+      await ensureAuthenticated();
+      const headers = {
+        'Content-Type': 'application/json',
+        ...(AppState.token ? { 'Authorization': `Bearer ${AppState.token}` } : {}),
+        ...(options.headers || {})
+      };
+      const res = await fetch(endpoint, { ...options, headers });
+      if (res.status === 401) {
+        // Refresh demo token
+        const refresh = await fetch('/api/auth/demo-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ demoId: 'farmer-ramesh-kumar' })
+        });
+        const refData = await refresh.json();
+        if (refData.token) {
+          AppState.token = refData.token;
+          localStorage.setItem('km_auth_token', refData.token);
+          headers['Authorization'] = `Bearer ${refData.token}`;
+          return fetch(endpoint, { ...options, headers }).then(r => r.json());
+        }
+      }
+      return res.json();
+    }
+
+    // Routing System
+    function navigate(path, query = null) {
+      window.history.pushState({}, '', path);
+      AppState.currentPath = path;
+      renderCurrentRoute(query);
+    }
+
+    window.addEventListener('popstate', () => {
+      AppState.currentPath = window.location.pathname;
+      renderCurrentRoute();
+    });
+
+    function hideAllViews() {
+      stopCropCameraStream();
+      ['landing', 'register', 'home', 'weather', 'mandi', 'schemes', 'crop'].forEach(id => {
+        const el = document.getElementById(`view-${id}`);
+        if (el) el.classList.add('hidden');
+      });
+    }
+
+    function updateNavHighlight(activeKey) {
+      ['home', 'crop', 'mandi', 'schemes'].forEach(key => {
+        const btn = document.getElementById(`nav-item-${key}`);
+        if (!btn) return;
+        if (key === activeKey) {
+          btn.className = "flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-3 py-1 h-full flex-1 transition-transform";
+          const icon = btn.querySelector('.material-symbols-outlined');
+          if (icon) icon.classList.add('fill-icon');
+        } else {
+          btn.className = "flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95 rounded-xl px-3 py-1 h-full flex-1";
+          const icon = btn.querySelector('.material-symbols-outlined');
+          if (icon) icon.classList.remove('fill-icon');
+        }
+      });
+    }
+
+    async function renderCurrentRoute(forwardedQuery = null) {
+      hideAllViews();
+      updateAllStaticLabels();
+      const path = AppState.currentPath;
+      const bottomNav = document.getElementById('global-bottom-nav');
+      const floatingAiBtn = document.getElementById('global-floating-ai-btn');
+
+      if (path === '/' || path === '/landing' || path === '/login') {
+        if (bottomNav) bottomNav.classList.add('hidden');
+        if (floatingAiBtn) floatingAiBtn.classList.add('hidden');
+        renderLandingView();
+      } else if (path === '/register') {
+        if (bottomNav) bottomNav.classList.add('hidden');
+        if (floatingAiBtn) floatingAiBtn.classList.add('hidden');
+        renderRegisterStep1();
+      } else {
+        if (bottomNav) bottomNav.classList.remove('hidden');
+        if (floatingAiBtn) floatingAiBtn.classList.remove('hidden');
+
+        if (path === '/home') {
+          updateNavHighlight('home');
+          await renderHomeView();
+        } else if (path === '/weather-advisory') {
+          updateNavHighlight('');
+          await renderWeatherView(forwardedQuery);
+        } else if (path === '/crop-advisory') {
+          updateNavHighlight('crop');
+          renderCropView(forwardedQuery);
+        } else if (path === '/mandi-intelligence') {
+          updateNavHighlight('mandi');
+          await renderMandiView(forwardedQuery);
+        } else if (path === '/scheme-finder') {
+          updateNavHighlight('schemes');
+          await renderSchemesView(forwardedQuery);
+        } else {
+          updateNavHighlight('home');
+          await renderHomeView();
+        }
+      }
+    }
+
+    // ==========================================
+    // 1. LANDING VIEW (Exact Stitch Layout & 100% Translated)
+    // ==========================================
+    function renderLandingView() {
+      const container = document.getElementById('view-landing');
+      container.classList.remove('hidden');
+      container.innerHTML = `
+        <!-- Hero Background Image Section -->
+        <div class="relative flex-1 w-full min-h-[442px]">
+          <div class="absolute inset-0 bg-cover bg-center w-full h-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmnPI3be-hRC9D1UriJtAhUinFRhb2yIwoHefVAOoW7Y5BfJMXDbRy4Ww4McosdOyJ9ihsjcJDlDrJuGj9HFNSkYI2YiCI6Aw_tBIATrumluAaqPdDZlW9wNqs3-ziSZL825o1avzR9WIELh-7dvvfsgDQjVlBEd-bpkf_puA4HPZ4fX2oaQA9CZCS5Sh8CZSKUxODf1eCae1nR8mLJDwmgQv8C-VSiM-o6cGLgqr8mavSvXQ9IjPjEzPQs5HsgwnuzA')"></div>
+          
+          <!-- Minimal Branding Header overlaying the image with Language Toggle -->
+          <header class="absolute top-0 left-0 w-full p-margin-mobile flex items-center justify-between z-10">
+            <div class="bg-surface/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm flex items-center gap-2 border border-outline-variant/50">
+              <span class="material-symbols-outlined text-primary text-[24px] fill-icon">psychiatry</span>
+              <h1 class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">${t('appName')}</h1>
+            </div>
+
+            <!-- Language Pill -->
+            <button onclick="toggleQuickLanguage()" class="bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1 border border-outline-variant/50 text-xs font-bold text-primary hover:bg-surface transition-colors">
+              <span class="material-symbols-outlined text-[15px]">translate</span>
+              <span>${getActiveLang() === 'en' ? 'हिन्दी' : 'English'}</span>
+            </button>
+          </header>
+
+          <!-- Gradient Transition to Content -->
+          <div class="absolute bottom-0 left-0 w-full h-32 hero-gradient z-0"></div>
+        </div>
+
+        <!-- Content & Action Section (Bento-style Card popping up) -->
+        <div class="relative z-10 bg-surface px-margin-mobile pb-8 pt-4 flex flex-col items-center text-center -mt-8 rounded-t-xl border-t border-outline-variant/20">
+          <div class="w-12 h-1.5 bg-outline-variant rounded-full mb-6"></div>
+          <div class="flex flex-col gap-2 mb-6">
+            <h2 class="font-headline-lg text-headline-lg text-primary text-balance font-bold">
+              ${t('heroTitle')}
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-[320px] mx-auto text-balance mt-2">
+              ${t('heroSubtitle')}
+            </p>
+          </div>
+
+          <!-- Call to Actions -->
+          <div class="w-full flex flex-col gap-4 mt-auto">
+            <button onclick="navigate('/register')" class="w-full h-[52px] bg-primary text-on-primary font-body-lg text-body-lg rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(0,103,131,0.25)] active:scale-[0.98] transition-transform font-medium">
+              ${t('getStarted')}
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </button>
+            <button onclick="handleQuickLogin()" class="w-full h-[52px] bg-transparent border-2 border-primary text-primary font-body-lg text-body-lg rounded-xl flex items-center justify-center hover:bg-primary/5 active:bg-primary/10 transition-colors font-medium">
+              ${t('loginDemo')}
+            </button>
+          </div>
+          <p class="font-label-md text-label-md text-outline mt-6 text-center">
+            ${t('termsNotice')}
+          </p>
+        </div>
+      `;
+    }
+
+    async function handleQuickLogin() {
+      await ensureAuthenticated();
+      navigate('/home');
+    }
+
+    // ==========================================
+    // 2. REGISTRATION STEP 1 & STEP 2 (Strict English + Hindi Selector)
+    // ==========================================
+    function renderRegisterStep1() {
+      const container = document.getElementById('view-register');
+      container.classList.remove('hidden');
+      const isHi = getActiveLang() === 'hi';
+
+      container.innerHTML = `
+        <header class="w-full pt-4 pb-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2 flex-1 mr-4">
+              <div class="h-2 flex-1 bg-primary rounded-full transition-all duration-300 ease-out"></div>
+              <div class="h-2 flex-1 bg-surface-container-high rounded-full transition-all duration-300 ease-out"></div>
+            </div>
+            <!-- Quick Lang Toggle -->
+            <button onclick="toggleQuickLanguage()" class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-bold text-primary border border-outline-variant/60 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px]">translate</span>
+              ${isHi ? 'English' : 'हिन्दी'}
+            </button>
+          </div>
+
+          <div class="flex items-baseline gap-2 mb-2">
+            <span class="font-label-md text-label-md text-primary font-bold">${t('step1Of2')}</span>
+          </div>
+          <h1 class="font-headline-md text-headline-md text-on-background font-bold">${t('step1Title')}</h1>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">${t('step1Subtitle')}</p>
+        </header>
+
+        <form id="reg-step1-form" class="flex flex-col gap-4 flex-1 w-full" onsubmit="event.preventDefault(); submitRegStep1();">
+          <div class="flex flex-col gap-1 w-full">
+            <label class="font-label-md text-label-md text-on-surface-variant ml-1" for="fullName">${t('labelName')}</label>
+            <input class="h-[56px] w-full px-4 rounded-xl border border-outline-variant bg-surface text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 shadow-sm" id="fullName" value="${AppState.registrationDraft.fullName || (isHi ? 'रमेश कुमार' : 'Ramesh Kumar')}" placeholder="${t('placeholderName')}" required type="text">
+          </div>
+
+          <div class="relative flex flex-col gap-1 w-full group">
+            <label class="font-label-md text-label-md text-on-surface-variant ml-1" for="regState">${t('labelState')}</label>
+            <select class="h-[56px] w-full px-4 pr-10 rounded-xl border border-outline-variant bg-surface text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 shadow-sm cursor-pointer appearance-none" id="regState" required>
+              <option value="Uttar Pradesh" ${AppState.registrationDraft.state === 'Uttar Pradesh' ? 'selected' : ''}>Uttar Pradesh (उत्तर प्रदेश)</option>
+              <option value="Maharashtra" ${AppState.registrationDraft.state === 'Maharashtra' ? 'selected' : ''}>Maharashtra (महाराष्ट्र)</option>
+              <option value="Madhya Pradesh" ${AppState.registrationDraft.state === 'Madhya Pradesh' ? 'selected' : ''}>Madhya Pradesh (मध्य प्रदेश)</option>
+              <option value="Rajasthan" ${AppState.registrationDraft.state === 'Rajasthan' ? 'selected' : ''}>Rajasthan (राजस्थान)</option>
+              <option value="Punjab" ${AppState.registrationDraft.state === 'Punjab' ? 'selected' : ''}>Punjab (पंजाब)</option>
+              <option value="Haryana" ${AppState.registrationDraft.state === 'Haryana' ? 'selected' : ''}>Haryana (हरियाणा)</option>
+              <option value="Gujarat" ${AppState.registrationDraft.state === 'Gujarat' ? 'selected' : ''}>Gujarat (गुजरात)</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-4 top-[36px] text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors">expand_more</span>
+          </div>
+
+          <div class="relative flex flex-col gap-1 w-full group">
+            <label class="font-label-md text-label-md text-on-surface-variant ml-1" for="regDistrict">${t('labelDistrict')}</label>
+            <select class="h-[56px] w-full px-4 pr-10 rounded-xl border border-outline-variant bg-surface text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 shadow-sm cursor-pointer appearance-none" id="regDistrict" required>
+              <option value="Lucknow" selected>Lucknow (लखनऊ)</option>
+              <option value="Varanasi">Varanasi (वाराणसी)</option>
+              <option value="Agra">Agra (आगरा)</option>
+              <option value="Kanpur">Kanpur (कानपुर)</option>
+              <option value="Prayagraj">Prayagraj (प्रयागराज)</option>
+              <option value="Meerut">Meerut (मेरठ)</option>
+              <option value="Pune">Pune (पुणे)</option>
+              <option value="Indore">Indore (इंदौर)</option>
+              <option value="Jaipur">Jaipur (जयपुर)</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-4 top-[36px] text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors">expand_more</span>
+          </div>
+
+          <!-- Strict Preferred Language selector with ONLY English and Hindi -->
+          <div class="relative flex flex-col gap-1 w-full group mb-6">
+            <label class="font-label-md text-label-md text-on-surface-variant ml-1 font-bold flex items-center gap-1" for="regLanguage">
+              <span class="material-symbols-outlined text-[16px] text-primary">language</span>
+              ${t('preferredLanguage')} *
+            </label>
+            <select class="h-[56px] w-full px-4 pr-10 rounded-xl border-2 border-primary/50 bg-surface text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 shadow-sm cursor-pointer appearance-none font-semibold" id="regLanguage" required onchange="handleRegLangChange(this.value)">
+              <option value="English" ${!isHi ? 'selected' : ''}>English</option>
+              <option value="Hindi" ${isHi ? 'selected' : ''}>हिन्दी</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-4 top-[36px] text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors">expand_more</span>
+          </div>
+
+          <div class="mt-auto pt-6 pb-4 w-full">
+            <button class="w-full min-h-[56px] bg-primary text-on-primary font-headline-sm text-headline-sm rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-200 shadow-md active:scale-[0.98] font-bold" type="submit">
+              ${t('btnContinue')}
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </button>
+          </div>
+        </form>
+      `;
+    }
+
+    function handleRegLangChange(val) {
+      AppState.registrationDraft.language = val;
+      setAppLanguage(val);
+    }
+
+    function submitRegStep1() {
+      AppState.registrationDraft.fullName = document.getElementById('fullName').value;
+      AppState.registrationDraft.state = document.getElementById('regState').value;
+      AppState.registrationDraft.district = document.getElementById('regDistrict').value;
+      AppState.registrationDraft.language = document.getElementById('regLanguage').value;
+      renderRegisterStep2();
+    }
+
+    function renderRegisterStep2() {
+      const container = document.getElementById('view-register');
+      container.innerHTML = `
+        <header class="w-full top-0 sticky bg-surface shadow-sm h-12 flex items-center justify-between px-0 z-50 mb-4">
+          <div class="flex items-center gap-2">
+            <button onclick="renderRegisterStep1()" class="text-primary hover:bg-surface-variant/50 p-2 rounded-full transition-colors duration-200" aria-label="Back">
+              <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <span class="font-headline-md text-headline-md text-primary font-bold">${t('appName')}</span>
+          </div>
+        </header>
+
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex justify-between items-center text-label-md text-on-surface-variant">
+            <span>${t('step2Of2')}</span>
+            <span>${t('farmDetails')}</span>
+          </div>
+          <div class="flex gap-2 h-2">
+            <div class="flex-1 bg-primary rounded-full"></div>
+            <div class="flex-1 bg-primary rounded-full"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-base text-center mb-6">
+          <h1 class="font-headline-lg text-headline-lg text-primary font-bold">${t('step2Title')}</h1>
+          <p class="font-body-md text-body-md text-on-surface-variant">${t('step2Subtitle')}</p>
+        </div>
+
+        <div class="bg-surface-container-lowest p-margin-desktop rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-outline-variant flex flex-col gap-margin-desktop relative overflow-hidden mb-24">
+          <div class="flex flex-col gap-2 relative z-10">
+            <label class="font-headline-sm text-headline-sm text-on-surface font-bold" for="land-size">${t('labelLandSize')}</label>
+            <div class="relative flex shadow-sm rounded-lg overflow-hidden border border-outline focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all duration-200">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline">square_foot</span>
+              </span>
+              <input class="w-full h-[56px] pl-10 pr-28 py-3 bg-surface-container-lowest text-on-surface font-body-lg text-body-lg border-none focus:ring-0 placeholder:text-outline-variant" id="land-size" value="${AppState.registrationDraft.landSize || '2'}" placeholder="${t('placeholderLandSize')}" type="number" step="0.1" required>
+              <div class="absolute inset-y-0 right-0 flex items-center border-l border-outline-variant bg-surface-container-low">
+                <select class="h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-on-surface font-body-md text-body-md focus:ring-0 cursor-pointer appearance-none font-semibold" id="land-unit">
+                  <option value="acres" selected>${t('unitAcres')}</option>
+                  <option value="hectares">${t('unitHectares')}</option>
+                  <option value="bigha">${t('unitBigha')}</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 pointer-events-none text-outline">arrow_drop_down</span>
+              </div>
+            </div>
+            <p class="text-label-md text-on-surface-variant ml-1">${t('landSizeHint')}</p>
+          </div>
+
+          <div class="flex flex-col gap-2 relative z-10">
+            <label class="font-headline-sm text-headline-sm text-on-surface font-bold" for="main-crop">${t('labelMainCrop')}</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline">potted_plant</span>
+              </span>
+              <select class="w-full h-[56px] pl-10 pr-10 py-3 bg-surface-container-lowest text-on-surface font-body-lg text-body-lg rounded-lg border border-outline focus:border-primary focus:ring-1 focus:ring-primary shadow-sm cursor-pointer appearance-none font-semibold" id="main-crop" required>
+                <option value="Wheat" selected>${t('cropWheat')}</option>
+                <option value="Rice (Paddy)">${t('cropRice')}</option>
+                <option value="Mustard">${t('cropMustard')}</option>
+                <option value="Cotton">${t('cropCotton')}</option>
+                <option value="Sugarcane">${t('cropSugarcane')}</option>
+                <option value="Maize">${t('cropMaize')}</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">arrow_drop_down</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 relative z-10">
+            <label class="font-headline-sm text-headline-sm text-on-surface flex justify-between font-bold" for="soil-type">
+              <span>${t('labelSoilType')}</span>
+              <span class="text-label-md font-normal text-on-surface-variant">${t('optional')}</span>
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline">terrain</span>
+              </span>
+              <select class="w-full h-[56px] pl-10 pr-10 py-3 bg-surface-container-lowest text-on-surface font-body-lg text-body-lg rounded-lg border border-outline focus:border-primary focus:ring-1 focus:ring-primary shadow-sm cursor-pointer appearance-none" id="soil-type">
+                <option value="Alluvial" selected>${t('soilAlluvial')}</option>
+                <option value="Black Soil">${t('soilBlack')}</option>
+                <option value="Red Soil">${t('soilRed')}</option>
+                <option value="Sandy Loam">${t('soilSandy')}</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">arrow_drop_down</span>
+            </div>
+          </div>
+
+          <button onclick="submitRegStep2()" class="w-full h-[56px] bg-primary text-on-primary font-headline-sm text-headline-sm rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-200 shadow-md active:scale-[0.98] font-bold">
+            ${t('btnCompleteSetup')}
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+          </button>
+        </div>
+      `;
+    }
+
+    async function submitRegStep2() {
+      const landSize = parseFloat(document.getElementById('land-size').value) || 2;
+      const landUnit = document.getElementById('land-unit').value;
+      const crop = document.getElementById('main-crop').value;
+      const soilType = document.getElementById('soil-type').value;
+
+      AppState.farmer.name = AppState.registrationDraft.fullName || 'Ramesh Kumar';
+      AppState.farmer.state = AppState.registrationDraft.state || 'Uttar Pradesh';
+      AppState.farmer.district = AppState.registrationDraft.district || 'Lucknow';
+      AppState.farmer.language = AppState.registrationDraft.language || 'Hindi';
+      AppState.farmer.land_size = landSize;
+      AppState.farmer.land_unit = landUnit;
+      AppState.farmer.crop = crop;
+      AppState.farmer.soil_type = soilType;
+
+      window.__CURRENT_APP_LANG = normalizeLang(AppState.farmer.language);
+      localStorage.setItem('km_farmer_profile', JSON.stringify(AppState.farmer));
+
+      try {
+        await apiFetch('/api/farmer/profile', {
+          method: 'PUT',
+          body: JSON.stringify({
+            name: AppState.farmer.name,
+            state: AppState.farmer.state,
+            district: AppState.farmer.district,
+            language: AppState.farmer.language,
+            land_size: AppState.farmer.land_size,
+            land_unit: AppState.farmer.land_unit,
+            crop: AppState.farmer.crop,
+            soil_type: AppState.farmer.soil_type
+          })
+        });
+      } catch (e) {
+        console.warn('Profile save sync notice:', e);
+      }
+
+      navigate('/home');
+    }
+
+    // ==========================================
+    // 3. HOME DASHBOARD (Exact Stitch Layout & 100% Translated)
+    // ==========================================
+    async function renderHomeView() {
+      const container = document.getElementById('view-home');
+      container.classList.remove('hidden');
+
+      const crop = AppState.farmer.crop || 'Wheat';
+      const cropLocalized = translateCrop(crop);
+      const unitLocalized = translateUnit(AppState.farmer.land_unit || 'acres');
+      const greeting = `${t('greetingFarmer')} ${AppState.farmer.name || 'Ramesh'}`;
+
+      container.innerHTML = `
+        ${renderAppHeader(false)}
+
+        <main class="px-margin-mobile py-margin-mobile max-w-md mx-auto space-y-margin-desktop w-full">
+          <!-- Top Greeting & Farm Context Pills -->
+          <div class="flex flex-col gap-1">
+            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">
+              ${greeting}
+            </h2>
+            <div class="flex items-center gap-2 text-on-surface-variant font-label-md text-xs">
+              <span class="bg-surface-container px-2.5 py-1 rounded-full font-semibold text-primary">🌾 ${cropLocalized}</span>
+              <span class="bg-surface-container px-2.5 py-1 rounded-full font-medium">📍 ${AppState.farmer.district}</span>
+              <span class="bg-surface-container px-2.5 py-1 rounded-full font-medium">📐 ${AppState.farmer.land_size} ${unitLocalized}</span>
+            </div>
+          </div>
+
+          <!-- Floating Assistant Trigger Card (Bento Top Anchor) -->
+          <div onclick="openAssistantDrawer()" class="bg-primary-container text-on-primary-container rounded-xl p-5 shadow-[0_8px_20px_rgba(0,103,131,0.14)] border border-primary/20 cursor-pointer hover:shadow-lg transition-all group relative overflow-hidden">
+            <div class="flex items-start gap-3 relative z-10">
+              <div class="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined fill-icon text-[24px]">smart_toy</span>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-headline-sm text-headline-sm font-bold text-on-primary-container flex items-center gap-1.5">
+                  ${t('homeAiCardTitle')}
+                  <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim inline-block animate-ping"></span>
+                </h3>
+                <p class="font-body-md text-sm mt-0.5 opacity-90 font-medium">
+                  ${t('homeAiPrompt')}
+                </p>
+                <div class="flex items-center gap-2 mt-3 text-xs bg-surface/80 backdrop-blur-sm px-3 py-2 rounded-lg text-primary font-semibold border border-primary/20">
+                  <span class="material-symbols-outlined text-[16px]">chat</span>
+                  <span>${t('placeholderSearch')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Bento Grid -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">${t('todaysUpdates')}</h3>
+              <button onclick="navigate('/weather-advisory')" class="text-primary font-label-md text-xs font-bold hover:underline">${t('viewAll')}</button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <!-- Weather Card -->
+              <div onclick="navigate('/weather-advisory')" class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between border-l-4 border-l-primary group">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-primary text-[28px]">cloud</span>
+                  <span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">${t('badgeNew')}</span>
+                </div>
+                <div>
+                  <h4 class="font-headline-sm text-sm font-bold text-on-surface">${t('weatherTitle')}</h4>
+                  <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">${t('weatherUpdateTitle')}</p>
+                </div>
+              </div>
+
+              <!-- Crop Doctor Card -->
+              <div onclick="navigate('/crop-advisory')" class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between border-l-4 border-l-tertiary group">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-tertiary text-[28px]">potted_plant</span>
+                  <span class="bg-tertiary/10 text-tertiary text-[10px] font-bold px-2 py-0.5 rounded-full">AI</span>
+                </div>
+                <div>
+                  <h4 class="font-headline-sm text-sm font-bold text-on-surface">${t('cropTitle')}</h4>
+                  <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">${t('cropUpdateTitle')}</p>
+                </div>
+              </div>
+
+              <!-- Mandi Card -->
+              <div onclick="navigate('/mandi-intelligence')" class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between border-l-4 border-l-secondary group">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-secondary text-[28px]">storefront</span>
+                  <span class="text-xs font-bold text-secondary">₹2,450</span>
+                </div>
+                <div>
+                  <h4 class="font-headline-sm text-sm font-bold text-on-surface">${t('mandiTitle')}</h4>
+                  <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">${t('mandiUpdateTitle')}</p>
+                </div>
+              </div>
+
+              <!-- Schemes Card -->
+              <div onclick="navigate('/scheme-finder')" class="glass-card rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between border-l-4 border-l-primary-container group">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="material-symbols-outlined text-primary text-[28px]">description</span>
+                  <span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded-full">RAG</span>
+                </div>
+                <div>
+                  <h4 class="font-headline-sm text-sm font-bold text-on-surface">${t('schemesTitle')}</h4>
+                  <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">${t('schemesUpdateTitle')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      `;
+    }
+
+    // ==========================================
+    // 4. WEATHER ADVISORY (Exact Stitch & 100% Translated)
+    // ==========================================
+    async function renderWeatherView(forwardedQuery = null) {
+      const container = document.getElementById('view-weather');
+      container.classList.remove('hidden');
+
+      container.innerHTML = `
+        ${renderAppHeader(true)}
+        <main class="px-margin-mobile py-margin-mobile max-w-md mx-auto space-y-margin-desktop w-full">
+          <div class="p-8 text-center text-on-surface-variant animate-pulse font-medium">${t('weatherLoading')}</div>
+        </main>
+      `;
+
+      try {
+        const data = await apiFetch(`/api/weather?state=${encodeURIComponent(AppState.farmer.state)}&district=${encodeURIComponent(AppState.farmer.district)}`);
+        AppState.weatherData = data;
+
+        const current = data.current || { temp_c: 28, condition: 'Mostly Cloudy', humidity: 65, rain_probability: 20 };
+        const advisory = data.advisory || {};
+        const forecast = data.forecast || [
+          { day: t('dayToday'), temp: '28° / 19°', icon: 'cloud', rain: 20 },
+          { day: t('dayTomorrow'), temp: '26° / 18°', icon: 'rainy', rain: 75 },
+          { day: t('dayWed'), temp: '27° / 19°', icon: 'partly_cloudy_day', rain: 10 },
+          { day: t('dayThu'), temp: '29° / 20°', icon: 'sunny', rain: 5 },
+          { day: t('dayFri'), temp: '30° / 21°', icon: 'sunny', rain: 0 }
+        ];
+
+        container.innerHTML = `
+          ${renderAppHeader(true)}
+
+          <main class="px-margin-mobile py-margin-mobile max-w-md mx-auto space-y-margin-desktop w-full">
+            <!-- Header Title -->
+            <div>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">cloud</span>
+                ${t('weatherTitle')}
+              </h2>
+              <p class="text-xs text-on-surface-variant mt-0.5">📍 ${AppState.farmer.district}, ${AppState.farmer.state}</p>
+            </div>
+
+            <!-- Current Weather Main Card -->
+            <div class="glass-card rounded-xl p-6 shadow-sm flex items-center justify-between border border-outline-variant/40">
+              <div>
+                <div class="font-headline-lg text-4xl font-bold text-primary">${current.temp_c || 28}°C</div>
+                <div class="font-headline-sm text-base text-on-surface font-semibold mt-1">${t('conditionMostlyCloudy')}</div>
+                <div class="flex items-center gap-3 text-on-surface-variant font-label-md text-xs mt-2">
+                  <span>💧 ${t('labelRain')}: ${current.rain_probability || 20}%</span>
+                  <span>💨 ${t('labelHumidity')}: ${current.humidity || 65}%</span>
+                </div>
+              </div>
+              <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-4xl fill-icon">partly_cloudy_day</span>
+              </div>
+            </div>
+
+            <!-- AI Farm Advisory Card -->
+            <div class="bg-primary-container text-on-primary-container rounded-xl p-5 shadow-sm border border-primary/20">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined fill-icon text-primary">psychiatry</span>
+                <h3 class="font-headline-sm text-sm font-bold text-on-primary-container">${t('aiWeatherTitle')}</h3>
+              </div>
+              <div class="space-y-2.5 text-xs">
+                <div class="bg-surface/80 p-3 rounded-lg border border-primary/20 text-on-surface">
+                  <strong class="text-primary font-bold block mb-1">🚿 ${t('advisoryIrrigation')}:</strong>
+                  ${advisory.irrigation || (getActiveLang() === 'en' ? 'Postpone irrigation as rain is forecasted within 24 hours.' : 'अगले 24 घंटों में बारिश की संभावना के कारण सिंचाई स्थगित करें।')}
+                </div>
+                <div class="bg-surface/80 p-3 rounded-lg border border-primary/20 text-on-surface">
+                  <strong class="text-secondary font-bold block mb-1">🛡️ ${t('advisoryCropProtection')}:</strong>
+                  ${advisory.crop_protection || (getActiveLang() === 'en' ? 'Avoid chemical spray application before rainfall.' : 'बारिश से पहले कीटनाशक या फफूंदनाशी का छिड़काव न करें।')}
+                </div>
+              </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div class="space-y-2">
+              <h3 class="font-headline-sm text-sm font-bold text-on-surface px-1">${t('forecast5Day')}</h3>
+              <div class="bg-surface-container rounded-xl p-3 border border-outline-variant/40 divide-y divide-outline-variant/30">
+                ${forecast.map(f => `
+                  <div class="flex items-center justify-between py-2 text-xs">
+                    <span class="font-semibold text-on-surface w-20">${f.day}</span>
+                    <div class="flex items-center gap-1 text-primary">
+                      <span class="material-symbols-outlined text-[18px]">${f.icon || 'cloud'}</span>
+                      <span class="text-on-surface-variant text-[11px]">${f.rain}%</span>
+                    </div>
+                    <span class="font-medium text-on-surface">${f.temp}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <button onclick="sendAssistantQuery(getChipQuery('weather'))" class="w-full min-h-[52px] flex items-center justify-center gap-2 rounded-full border border-primary text-primary font-label-md hover:bg-primary-container/20 transition-colors font-bold shadow-sm">
+              <span class="material-symbols-outlined">forum</span>
+              ${t('btnAskWeatherAI')}
+            </button>
+          </main>
+        `;
+      } catch (e) {
+        console.error('Weather render error:', e);
+      }
+    }
+
+    // ==========================================
+    // 5. MANDI INTELLIGENCE (Exact Stitch & 100% Translated)
+    // ==========================================
+    async function renderMandiView(forwardedQuery = null) {
+      const container = document.getElementById('view-mandi');
+      container.classList.remove('hidden');
+
+      container.innerHTML = `
+        ${renderAppHeader(true)}
+        <main class="px-margin-mobile py-margin-mobile max-w-md mx-auto space-y-margin-desktop w-full">
+          <div class="p-8 text-center text-on-surface-variant animate-pulse font-medium">${t('mandiLoading')}</div>
+        </main>
+      `;
+
+      try {
+        const crop = AppState.farmer.crop || 'Wheat';
+        const cropLocalized = translateCrop(crop);
+        const data = await apiFetch(`/api/mandi?crop=${encodeURIComponent(crop)}&state=${encodeURIComponent(AppState.farmer.state)}&district=${encodeURIComponent(AppState.farmer.district)}`);
+        AppState.mandiData = data;
+
+        const mandiInfo = data.mandi_data || {};
+        const analysis = data.market_analysis || {};
+        const avgPrice = mandiInfo.modal_price || mandiInfo.msp_declared || 2450;
+        const msp = mandiInfo.msp_declared || 2275;
+        const nearby = mandiInfo.nearby_mandis && mandiInfo.nearby_mandis.length > 0 ? mandiInfo.nearby_mandis : [
+          { market: 'Lucknow APMC Mandi', district: 'Lucknow', modal_price: 2450, distance_km: 18, is_top_pick: true },
+          { market: 'Barabanki Mandi Yard', district: 'Barabanki', modal_price: 2480, distance_km: 35, is_top_pick: false },
+          { market: 'Sitapur Central Mandi', district: 'Sitapur', modal_price: 2510, distance_km: 62, is_top_pick: false }
+        ];
+
+        container.innerHTML = `
+          ${renderAppHeader(true)}
+
+          <main class="px-margin-mobile py-margin-mobile max-w-md mx-auto space-y-margin-desktop w-full">
+            <div class="flex justify-between items-end">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="bg-primary-container text-on-primary-container font-label-md text-xs px-2.5 py-0.5 rounded-full font-bold">${cropLocalized}</span>
+                  <span class="text-on-surface-variant font-label-md text-xs font-medium">MSP: ₹${msp}${t('perQtl')}</span>
+                </div>
+                <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary">trending_up</span>
+                  ${t('mandiTitle')}
+                </h2>
+              </div>
+              <button onclick="sendAssistantQuery(getChipQuery('mandi'))" class="bg-surface-container-high text-on-surface p-2 rounded-full hover:bg-surface-variant transition-colors" title="${t('compareAll')}">
+                <span class="material-symbols-outlined">filter_list</span>
+              </button>
+            </div>
+
+            <!-- Bento Grid Layout -->
+            <div class="grid grid-cols-1 gap-margin-mobile">
+              <!-- Benchmark Price Card -->
+              <div class="glass-card rounded-xl p-6 shadow-sm relative overflow-hidden group border border-outline-variant/40">
+                <h3 class="font-headline-sm text-sm text-on-surface mb-2 font-semibold">${t('benchmarkPriceTitle')}</h3>
+                <div class="flex items-end gap-3 mb-4">
+                  <span class="font-headline-lg text-3xl text-primary font-bold">₹${avgPrice.toLocaleString()}</span>
+                  <span class="font-body-md text-xs text-on-surface-variant pb-1">${t('perQuintal')}</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <div class="flex items-center gap-1 bg-secondary-container/50 text-secondary-fixed-dim px-2.5 py-1 rounded-lg border border-secondary-container text-xs font-semibold">
+                    <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                    <span>${avgPrice >= msp ? t('aboveMsp') : t('atMsp')}</span>
+                  </div>
+                  <div class="flex items-center gap-1 bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-lg border border-outline-variant/30 text-xs font-medium">
+                    <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+                    <span>${t('verifiedSource')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Market Insight Card -->
+              <div class="bg-primary-container text-on-primary-container rounded-xl p-5 shadow-sm border border-primary/20">
+                <div class="flex items-start gap-3">
+                  <div class="bg-primary/20 p-2 rounded-full shrink-0">
+                    <span class="material-symbols-outlined filled text-primary">smart_toy</span>
+                  </div>
+                  <div>
+                    <h3 class="font-headline-sm text-sm font-bold mb-1 flex items-center gap-2">
+                      ${t('aiMandiInsightTitle')}
+                      <span class="animate-pulse w-2 h-2 rounded-full bg-secondary-fixed-dim inline-block"></span>
+                    </h3>
+                    <p class="font-body-md text-xs opacity-90 leading-relaxed mb-3">
+                      ${analysis.advice || (getActiveLang() === 'en' ? 'Official Agmarknet Daily Mandi data stream active. Comparing nearby yards allows maximizing net realizations after transport costs.' : 'एगमार्कनेट का दैनिक मंडी भाव सक्रिय है। नजदीकी मंडियों की तुलना करके परिवहन लागत घटाकर बेहतर दाम पाएं।')}
+                    </p>
+                    <button onclick="sendAssistantQuery(getActiveLang() === 'en' ? 'Should I sell my ${crop} today or wait for higher rates?' : 'क्या मुझे अपनी ${cropLocalized} आज बेचनी चाहिए या अच्छे भाव का इंतजार करना चाहिए?')" class="flex items-center gap-2 bg-surface text-primary px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-surface-variant transition-colors shadow-sm">
+                      <span class="material-symbols-outlined text-[16px]">map</span>
+                      ${t('btnAskSellingStrategy')}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nearby Mandis List -->
+              <div class="space-y-2">
+                <div class="flex justify-between items-center px-1">
+                  <h3 class="font-headline-sm text-sm text-on-surface font-bold">${t('nearbyMandis')}</h3>
+                  <button onclick="sendAssistantQuery(getChipQuery('mandi'))" class="text-secondary text-xs flex items-center gap-1 font-bold">
+                    ${t('compareAll')} <span class="material-symbols-outlined text-[15px]">chevron_right</span>
+                  </button>
+                </div>
+
+                ${nearby.map(m => `
+                  <div onclick="sendAssistantQuery(getActiveLang() === 'en' ? 'Tell me arrival and price trend for ${m.market}' : '${m.market} में फसल आवक और भाव के रुझान बताएं')" class="glass-card rounded-xl p-3.5 shadow-sm hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-between ${m.is_top_pick ? 'border-l-4 border-l-secondary' : 'border border-outline-variant/30'} cursor-pointer mb-2">
+                    <div class="flex items-center gap-3">
+                      <div class="w-9 h-9 bg-surface-container-high rounded-full flex items-center justify-center text-primary shrink-0">
+                        <span class="material-symbols-outlined text-[18px]">storefront</span>
+                      </div>
+                      <div>
+                        <h4 class="font-headline-sm text-xs text-on-surface font-bold">${m.market}</h4>
+                        <div class="flex items-center gap-2 text-on-surface-variant text-[11px] mt-0.5">
+                          <span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">location_on</span> ${m.distance_km || 18} km</span>
+                          ${m.is_top_pick ? `<span class="text-secondary font-bold">• ${t('topPick')}</span>` : ''}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <div class="font-headline-sm text-sm text-primary font-bold">₹${(m.modal_price || avgPrice).toLocaleString()}</div>
+                      <div class="text-on-surface-variant text-[10px]">${t('perQtl')}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Actions -->
+              <div class="mt-2">
+                <button onclick="sendAssistantQuery(getActiveLang() === 'en' ? 'Compare all mandi transportation costs from ${AppState.farmer.district}' : '${AppState.farmer.district} से सभी नजदीकी मंडियों के परिवहन खर्च की तुलना करें')" class="w-full h-[52px] border-2 border-outline-variant text-primary font-headline-sm text-sm rounded-xl hover:bg-surface-variant/30 hover:border-primary/50 transition-all flex items-center justify-center gap-2 font-bold">
+                  <span class="material-symbols-outlined">compare_arrows</span>
+                  ${t('btnCompareMandis')}
+                </button>
+              </div>
+            </div>
+          </main>
+        `;
+      } catch (e) {
+        console.error('Mandi render error:', e);
+      }
+    }
+
+    // ==========================================
+    // 6. SCHEME FINDER (Exact Stitch & 100% Translated)
+    // ==========================================
+    async function renderSchemesView(forwardedQuery = null) {
+      const container = document.getElementById('view-schemes');
+      container.classList.remove('hidden');
+
+      container.innerHTML = `
+        ${renderAppHeader(true)}
+        <main class="max-w-md mx-auto px-margin-mobile py-margin-desktop flex flex-col gap-6 w-full">
+          <div class="p-8 text-center text-on-surface-variant animate-pulse font-medium">${t('schemesLoading')}</div>
+        </main>
+      `;
+
+      try {
+        const queryParam = forwardedQuery || 'financial support seed subsidy drip irrigation loan';
+        const data = await apiFetch(`/api/schemes?state=${encodeURIComponent(AppState.farmer.state)}&query=${encodeURIComponent(queryParam)}`);
+        AppState.schemesData = data;
+
+        const isHi = getActiveLang() === 'hi';
+        const cropLocalized = translateCrop(AppState.farmer.crop);
+        const unitLocalized = translateUnit(AppState.farmer.land_unit);
+
+        const schemes = data.schemes && data.schemes.length > 0 ? data.schemes : [
+          {
+            id: 'pm-kisan',
+            name: isHi ? 'प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)' : 'PM-Kisan Samman Nidhi',
+            benefit: isHi ? 'प्रति वर्ष ₹6,000 तीन समान किस्तों में (प्रत्यक्ष लाभ हस्तांतरण)' : '₹6,000 yearly in 3 equal installments (Direct Benefit Transfer)',
+            eligibility: isHi ? 'सभी छोटे व सीमांत किसान परिवार।' : 'All small & marginal landholder farmer families with cultivable land.',
+            official_url: 'https://pmkisan.gov.in',
+            fitReason: isHi ? `आपके ${AppState.farmer.land_size} एकड़ खेत के आधार पर पात्र।` : `Small/marginal farmer status based on your ${AppState.farmer.land_size || 2}-acre land holding.`
+          },
+          {
+            id: 'up-seed-subsidy',
+            name: isHi ? 'प्रमाणित बीज अनुदान योजना' : 'Certified Seed Subsidy Scheme',
+            benefit: isHi ? 'प्रमाणित गेहूँ और सरसों के बीजों पर 50% प्रत्यक्ष अनुदान' : '50% direct subsidy on certified Wheat & Mustard seeds.',
+            eligibility: isHi ? `${AppState.farmer.state} के पंजीकृत किसान।` : `Farmers residing in ${AppState.farmer.state || 'Uttar Pradesh'} holding valid Kisan Credit Card.`,
+            official_url: 'https://upagripardarshi.gov.in',
+            fitReason: isHi ? `${AppState.farmer.state} स्थान और ${cropLocalized} फसल के अनुकूल।` : `${AppState.farmer.state || 'Uttar Pradesh'} location, ${cropLocalized} cultivation match current crop cycle.`
+          },
+          {
+            id: 'pm-kusum',
+            name: isHi ? 'पीएम-कुसुम सोलर पंप योजना' : 'PM-KUSUM Solar Pump Scheme',
+            benefit: isHi ? 'कृषि सोलर पंप की स्थापना पर 60% तक की भारी सब्सिडी' : 'Up to 60% subsidy on standalone agricultural solar water pumps.',
+            eligibility: isHi ? 'कृषि योग्य भूमि और सिंचाई स्रोत वाले किसान।' : 'Farmers having cultivable land with borewell/tubewell irrigation source.',
+            official_url: 'https://pmkusum.mnre.gov.in',
+            fitReason: isHi ? 'डीजल और बिजली खर्च में 70% तक की बचत।' : 'Reduces diesel and grid power costs for your tubewell irrigation setup.'
+          }
+        ];
+
+        container.innerHTML = `
+          ${renderAppHeader(true)}
+
+          <main class="max-w-md mx-auto px-margin-mobile py-margin-desktop flex flex-col gap-5 w-full">
+            <section class="flex flex-col gap-1">
+              <h1 class="font-headline-lg text-headline-lg text-on-surface flex items-center gap-2 font-bold">
+                🏛️ ${t('schemesTitle')}
+              </h1>
+              <p class="font-body-md text-xs text-on-surface-variant">
+                ${t('schemesSubtitle')}
+              </p>
+            </section>
+
+            <!-- Profile Summary Card -->
+            <section class="bg-surface-container rounded-xl border border-outline-variant/40 p-4 flex flex-col gap-3 relative overflow-hidden shadow-sm">
+              <div class="flex items-center justify-between z-10">
+                <h2 class="font-headline-sm text-sm text-on-surface flex items-center gap-1.5 font-bold">
+                  <span class="material-symbols-outlined text-primary text-[18px]">person</span>
+                  ${t('profileSummary')}
+                </h2>
+                <button onclick="openProfileModal()" class="text-primary text-xs hover:underline font-bold">${t('editProfile')}</button>
+              </div>
+              <div class="grid grid-cols-2 gap-3 z-10 text-xs">
+                <div class="flex flex-col">
+                  <span class="text-on-surface-variant">${t('labelState')}</span>
+                  <span class="text-on-surface font-semibold">${AppState.farmer.state}</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-on-surface-variant">${t('labelDistrict')}</span>
+                  <span class="text-on-surface font-semibold">${AppState.farmer.district}</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-on-surface-variant">${t('primaryCrop')}</span>
+                  <span class="text-on-surface font-semibold">🌾 ${cropLocalized}</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-on-surface-variant">${t('labelLandSize')}</span>
+                  <span class="text-on-surface font-semibold">${AppState.farmer.land_size} ${unitLocalized}</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- AI Recommended Schemes -->
+            <section class="flex flex-col gap-3">
+              <div class="flex items-center gap-1.5 px-1">
+                <span class="material-symbols-outlined text-tertiary fill-icon text-[18px]">auto_awesome</span>
+                <h2 class="font-headline-sm text-sm text-tertiary font-bold">${t('aiRecommendedForYou')}</h2>
+              </div>
+
+              ${schemes.map(s => `
+                <div class="bg-surface-container rounded-xl border border-outline-variant/40 p-4 flex flex-col gap-3 shadow-sm hover:border-tertiary/50 transition-all">
+                  <div class="flex justify-between items-start gap-3">
+                    <div class="flex flex-col min-w-0 flex-1">
+                      <h3 class="font-headline-md text-base text-on-surface font-bold break-words">${s.name || s.title}</h3>
+                      <span class="inline-flex items-center rounded bg-tertiary/10 px-2 py-0.5 mt-1.5 w-fit max-w-full border border-tertiary/20">
+                        <span class="font-label-md text-xs text-tertiary font-bold break-words leading-relaxed">${s.benefit || 'Financial Grant / Subsidy'}</span>
+                      </span>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-surface-variant flex items-center justify-center text-primary shrink-0">
+                      <span class="material-symbols-outlined text-[20px]">payments</span>
+                    </div>
+                  </div>
+                  <div class="bg-surface p-3 rounded-lg border border-outline-variant/30 flex items-start gap-2 text-xs">
+                    <span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5 fill-icon">check_circle</span>
+                    <p class="text-on-surface-variant">
+                      <strong class="text-on-surface">${t('whyItFits')}</strong> ${s.fitReason || s.eligibility}
+                    </p>
+                  </div>
+                  <div class="flex gap-2 mt-1">
+                    <a href="${s.official_url || 'https://pmkisan.gov.in'}" target="_blank" rel="noopener noreferrer" class="h-10 flex-1 bg-primary text-on-primary rounded-xl text-xs flex items-center justify-center gap-1.5 font-bold shadow-sm hover:bg-primary/90 transition-colors">
+                      ${t('btnApplyPortal')}
+                      <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+                    </a>
+                    <button onclick="sendAssistantQuery(getActiveLang() === 'en' ? 'What documents are required to apply for ${s.name || s.title}?' : '${s.name || s.title} में आवेदन के लिए कौन-कौन से आवश्यक दस्तावेज चाहिए?')" class="h-10 px-3 border border-outline rounded-xl flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors text-xs font-bold">
+                      ${t('btnRequiredDocs')}
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            </section>
+
+            <!-- Source Info Note -->
+            <section class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 flex items-center justify-center gap-2 text-center text-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-primary fill-icon text-[16px]">verified</span>
+              <span>${t('schemeSourceNote')}</span>
+            </section>
+          </main>
+        `;
+      } catch (e) {
+        console.error('Schemes render error:', e);
+      }
+    }
+
+    // ==========================================
+    // 7. CROP ADVISORY & VISION (Exact Stitch & 100% Translated)
+    // ==========================================
+    function stopCropCameraStream() {
+      if (AppState.cameraStream) {
+        try {
+          AppState.cameraStream.getTracks().forEach(track => {
+            track.stop();
+          });
+        } catch (e) {
+          console.warn('Error stopping camera stream:', e);
+        }
+        AppState.cameraStream = null;
+      }
+    }
+
+    function renderCropView(forwardedQuery = null) {
+      stopCropCameraStream();
+      const container = document.getElementById('view-crop');
+      container.classList.remove('hidden');
+
+      AppState.activeForwardedCropQuery = forwardedQuery;
+      AppState.cropUpload = null;
+      AppState.isLiveCameraActive = false;
+
+      const isEn = getActiveLang() === 'en';
+      const promptBannerText = isEn
+        ? 'Please take a clear photo of your crop or choose one from your gallery so I can analyze the pest or disease.'
+        : 'कृपया अपनी फसल की एक स्पष्ट फोटो खींचें या गैलरी से चुनें ताकि मैं कीट या रोग का विश्लेषण कर सकूँ।';
+
+      container.innerHTML = `
+        ${renderAppHeader(true)}
+
+        <main class="flex-grow flex flex-col p-margin-mobile gap-5 pb-32 max-w-md mx-auto w-full">
+          <section class="flex flex-col gap-1">
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold">🌱 ${t('cropTitle')}</h2>
+            <p class="font-body-md text-xs text-on-surface-variant">${t('cropSubtitle')}</p>
+          </section>
+
+          ${forwardedQuery ? `
+            <!-- Assistant Guidance Prompt Banner -->
+            <div id="crop-assistant-prompt-banner" class="bg-primary/10 border-2 border-primary/40 rounded-xl p-4 flex items-start gap-3 shadow-sm animate-in fade-in duration-300">
+              <span class="material-symbols-outlined text-primary text-2xl mt-0.5 fill-icon">photo_camera</span>
+              <div class="flex flex-col gap-1 w-full">
+                <div class="flex items-center justify-between">
+                  <span class="font-label-md text-xs font-bold text-primary uppercase tracking-wider">${isEn ? 'AI Crop Doctor Guidance' : 'कृषि मित्र एआई मार्गदर्शन'}</span>
+                  <span class="bg-primary/20 text-primary text-[11px] font-bold px-2 py-0.5 rounded-full">${isEn ? 'Question Received' : 'प्राप्त प्रश्न'}</span>
+                </div>
+                <p class="font-body-md text-xs text-on-surface-variant font-medium bg-surface/70 px-2.5 py-1 rounded-lg border border-primary/20 italic">"${forwardedQuery}"</p>
+                <p class="font-body-md text-sm text-on-surface font-medium leading-relaxed mt-0.5">${promptBannerText}</p>
+              </div>
+            </div>
+          ` : ''}
+
+          <section class="flex flex-col gap-4 w-full">
+            <!-- Primary Camera & Gallery Upload Section -->
+            <div id="crop-upload-container" class="w-full bg-surface-container rounded-2xl p-5 border ${forwardedQuery ? 'border-2 border-primary ring-2 ring-primary/20' : 'border-outline-variant'} shadow-sm transition-all">
+              <!-- Rendered by renderCropUploadCard() -->
+            </div>
+
+            <!-- Hidden Mobile Gallery File Input (Storage Only) -->
+            <input id="crop-gallery-input" type="file" accept="image/*" class="hidden" onchange="handleCropFileSelected(event, 'gallery')" />
+
+            <!-- Text Input Form -->
+            <form onsubmit="event.preventDefault(); handleCropQuestionSubmit();" class="relative w-full rounded-xl overflow-hidden bg-surface-container shadow-sm border border-outline-variant group focus-within:border-primary transition-shadow">
+              <input id="crop-text-input" class="w-full h-14 pl-4 pr-12 bg-transparent border-none focus:ring-0 font-body-md text-sm placeholder:text-on-surface-variant text-on-background outline-none" placeholder="${t('placeholderCropQuestion')}" type="text" value="${forwardedQuery || ''}">
+              <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-surface-container-high transition-colors" aria-label="Send">
+                <span class="material-symbols-outlined fill-icon">send</span>
+              </button>
+            </form>
+
+            <div class="flex items-center gap-4">
+              <div class="h-px bg-outline-variant flex-grow"></div>
+              <span class="font-label-md text-xs text-on-surface-variant uppercase tracking-wider font-bold">${t('orDivider')}</span>
+              <div class="h-px bg-outline-variant flex-grow"></div>
+            </div>
+
+            <!-- Voice Button -->
+            <button onclick="openAssistantDrawer(); toggleVoiceAssistant();" class="w-full min-h-[50px] bg-secondary text-on-secondary rounded-xl font-headline-sm text-sm flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors active:scale-[0.98] font-bold shadow-sm">
+              <span class="material-symbols-outlined fill-icon">mic</span>
+              ${t('btnAskVoice')}
+            </button>
+
+            <!-- Sample Diagnosis Quick Test Buttons -->
+            <div class="flex flex-col gap-2 mt-2">
+              <span class="font-label-md text-xs text-on-surface-variant font-bold">${t('sampleTestsTitle')}</span>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="diagnoseSampleCrop('Wheat', 'Yellow Rust')" class="p-3 bg-surface-container rounded-xl border border-outline-variant text-left hover:border-primary transition-all">
+                  <span class="font-headline-sm text-xs font-bold block text-on-surface">${t('sampleWheatTitle')}</span>
+                  <span class="font-body-sm text-[11px] text-on-surface-variant">${t('sampleWheatDesc')}</span>
+                </button>
+                <button onclick="diagnoseSampleCrop('Tomato', 'Early Blight')" class="p-3 bg-surface-container rounded-xl border border-outline-variant text-left hover:border-primary transition-all">
+                  <span class="font-headline-sm text-xs font-bold block text-on-surface">${t('sampleTomatoTitle')}</span>
+                  <span class="font-body-sm text-[11px] text-on-surface-variant">${t('sampleTomatoDesc')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="crop-analysis-result-area" class="w-full"></div>
+          </section>
+        </main>
+      `;
+
+      renderCropUploadCard();
+
+      if (forwardedQuery) {
+        setTimeout(() => {
+          const banner = document.getElementById('crop-assistant-prompt-banner');
+          if (banner) {
+            banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+      }
+    }
+
+    function renderCropUploadCard() {
+      const container = document.getElementById('crop-upload-container');
+      if (!container) return;
+
+      const upload = AppState.cropUpload;
+      const isEn = getActiveLang() === 'en';
+
+      if (AppState.isLiveCameraActive && AppState.cameraStream) {
+        // Live Camera Stream State
+        container.innerHTML = `
+          <div class="flex flex-col gap-3.5 animate-in fade-in duration-200">
+            <!-- Live Camera Feed Container -->
+            <div class="relative w-full h-64 rounded-xl overflow-hidden bg-black border border-outline-variant shadow-inner flex items-center justify-center">
+              <video id="crop-camera-video" autoplay playsinline muted class="w-full h-full object-cover"></video>
+              
+              <!-- Live Indicator Pill -->
+              <div class="absolute top-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-[11px] font-bold text-on-surface border border-outline-variant/40 flex items-center gap-2 shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                </span>
+                <span>${isEn ? 'Live Camera' : 'लाइव कैमरा'}</span>
+              </div>
+            </div>
+
+            <!-- Two Equal-Width Camera Controls: Capture & Cancel -->
+            <div class="grid grid-cols-2 gap-3 w-full mt-0.5">
+              <button type="button" onclick="capturePhotoFromCamera()" id="btn-crop-capture-photo" class="h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-sm font-bold shadow-md hover:bg-primary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-primary/20">
+                <span class="material-symbols-outlined text-[22px] fill-icon">photo_camera</span>
+                <span>📸 ${t('btnCapturePhoto')}</span>
+              </button>
+              
+              <button type="button" onclick="cancelCropCamera()" id="btn-crop-cancel-camera" class="h-14 bg-surface-container-high hover:bg-surface-variant text-on-surface rounded-xl font-headline-sm text-sm font-bold shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-outline-variant">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+                <span>✖ ${t('btnCancelCamera')}</span>
+              </button>
+            </div>
+          </div>
+        `;
+
+        setTimeout(() => {
+          const video = document.getElementById('crop-camera-video');
+          if (video && AppState.cameraStream) {
+            video.srcObject = AppState.cameraStream;
+            video.play().catch(err => console.warn('Camera video play error:', err));
+          }
+        }, 50);
+      } else if (upload && upload.base64) {
+        // Image Preview State inside Stitch card
+        container.innerHTML = `
+          <div class="flex flex-col gap-4 animate-in fade-in duration-200">
+            <!-- Selected Image Preview -->
+            <div class="relative w-full h-52 rounded-xl overflow-hidden bg-surface-container-high border border-outline-variant shadow-inner">
+              <img src="${upload.base64}" alt="Selected crop photo" class="w-full h-full object-cover" />
+              <div class="absolute top-2 left-2 bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-[11px] font-bold text-on-surface border border-outline-variant/40 flex items-center gap-1 shadow-sm">
+                <span class="material-symbols-outlined text-[14px] text-primary fill-icon">${upload.source === 'camera' ? 'photo_camera' : 'photo_library'}</span>
+                <span>${upload.source === 'camera' ? (isEn ? 'Camera Capture' : 'कैमरा फोटो') : (isEn ? 'Gallery' : 'गैलरी')}</span>
+              </div>
+            </div>
+
+            <!-- File Metadata & Actions -->
+            <div class="flex items-center justify-between px-1">
+              <div class="flex flex-col min-w-0 pr-2">
+                <span class="font-label-md text-xs font-bold text-on-surface truncate max-w-[200px]" title="${upload.name}">${upload.name}</span>
+                <span class="font-body-sm text-[11px] text-on-surface-variant">${upload.size}</span>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button type="button" onclick="triggerCropGallery()" class="h-9 px-3 bg-surface-container-high hover:bg-surface-variant text-on-surface rounded-lg text-xs font-bold flex items-center gap-1 border border-outline-variant transition-colors" title="${t('btnReplaceImage')}">
+                  <span class="material-symbols-outlined text-[16px]">sync</span>
+                  <span>${t('btnReplaceImage')}</span>
+                </button>
+                <button type="button" onclick="clearCropUpload()" class="h-9 px-3 bg-error-container hover:bg-error/20 text-on-error-container rounded-lg text-xs font-bold flex items-center gap-1 border border-error/30 transition-colors" title="${t('btnRemoveImage')}">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                  <span>${t('btnRemoveImage')}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Prominent Analyze Crop Button -->
+            <button id="btn-crop-analyze" onclick="handleCropAnalyzeClick()" class="w-full h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-base font-bold shadow-md hover:bg-primary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2.5">
+              <span class="material-symbols-outlined text-[24px] fill-icon">psychiatry</span>
+              <span>${t('btnAnalyzeCrop')}</span>
+            </button>
+          </div>
+        `;
+      } else {
+        // Initial Dual Camera & Gallery Buttons State
+        container.innerHTML = `
+          <div class="flex flex-col items-center text-center gap-3.5">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-2xl fill-icon">yard</span>
+            </div>
+            
+            <div class="flex flex-col gap-1">
+              <h3 class="font-headline-sm text-sm text-on-background font-bold">${t('cropIdentifyHelp')}</h3>
+              <p class="font-body-md text-xs text-on-surface-variant">${t('uploadCardSubtitle')}</p>
+            </div>
+
+            <!-- Two Equal-Width Action Buttons: Camera & Gallery -->
+            <div class="grid grid-cols-2 gap-3 w-full mt-1">
+              <button type="button" onclick="triggerCropCamera()" id="btn-crop-camera" class="h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-sm font-bold shadow-sm hover:bg-primary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-primary/20">
+                <span class="material-symbols-outlined text-[22px] fill-icon">photo_camera</span>
+                <span>${t('btnOpenCamera')}</span>
+              </button>
+              
+              <button type="button" onclick="triggerCropGallery()" id="btn-crop-gallery" class="h-14 bg-secondary-container text-on-secondary-container rounded-xl font-headline-sm text-sm font-bold shadow-sm hover:bg-secondary-container/80 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border border-secondary-container/40">
+                <span class="material-symbols-outlined text-[22px] fill-icon">photo_library</span>
+                <span>${t('btnOpenGallery')}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    async function triggerCropCamera() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        showToast(t('cameraPermissionDenied'));
+        return;
+      }
+
+      stopCropCameraStream();
+
+      try {
+        let stream;
+        try {
+          // Request rear camera on supported mobile devices
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: 'environment' } },
+            audio: false
+          });
+        } catch (err1) {
+          // Fallback to default/front camera if environment camera is unavailable or constrained
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false
+          });
+        }
+
+        AppState.cameraStream = stream;
+        AppState.isLiveCameraActive = true;
+        AppState.cropUpload = null;
+        renderCropUploadCard();
+      } catch (err) {
+        console.warn('Camera permission denied or device error:', err);
+        showToast(t('cameraPermissionDenied'));
+      }
+    }
+
+    function capturePhotoFromCamera() {
+      const video = document.getElementById('crop-camera-video');
+      if (!video) return;
+
+      const canvas = document.createElement('canvas');
+      const width = video.videoWidth || video.clientWidth || 640;
+      const height = video.videoHeight || video.clientHeight || 480;
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, width, height);
+
+      const base64Data = canvas.toDataURL('image/jpeg', 0.92);
+      const approxBytes = Math.round((base64Data.length * 3) / 4);
+
+      stopCropCameraStream();
+      AppState.isLiveCameraActive = false;
+      AppState.cropUpload = {
+        base64: base64Data,
+        name: 'camera_capture_' + new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19) + '.jpg',
+        size: formatFileSize(approxBytes),
+        source: 'camera'
+      };
+
+      renderCropUploadCard();
+    }
+
+    function cancelCropCamera() {
+      stopCropCameraStream();
+      AppState.isLiveCameraActive = false;
+      renderCropUploadCard();
+    }
+
+    function triggerCropGallery() {
+      stopCropCameraStream();
+      AppState.isLiveCameraActive = false;
+      const input = document.getElementById('crop-gallery-input');
+      if (input) {
+        input.value = '';
+        input.click();
+      }
+    }
+
+    function formatFileSize(bytes) {
+      if (!bytes) return '0 B';
+      if (bytes < 1024 * 1024) {
+        return (bytes / 1024).toFixed(1) + ' KB';
+      }
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function handleCropFileSelected(event, source) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      // 1. Validation: Max Size 10 MB
+      const MAX_SIZE = 10 * 1024 * 1024;
+      if (file.size > MAX_SIZE) {
+        showToast(t('fileTooLarge'));
+        event.target.value = '';
+        return;
+      }
+
+      // 2. Validation: Supported Formats (JPEG, PNG, WebP)
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      const fileExt = file.name.split('.').pop()?.toLowerCase();
+      const validExts = ['jpg', 'jpeg', 'png', 'webp'];
+
+      if (!validTypes.includes(file.type) && !validExts.includes(fileExt || '')) {
+        showToast(t('invalidFileType'));
+        event.target.value = '';
+        return;
+      }
+
+      // 3. Read file and prepare preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Data = e.target.result;
+        AppState.cropUpload = {
+          file,
+          base64: base64Data,
+          name: file.name || 'gallery_image.jpg',
+          size: formatFileSize(file.size),
+          source: source || 'gallery'
+        };
+        renderCropUploadCard();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearCropUpload() {
+      stopCropCameraStream();
+      AppState.isLiveCameraActive = false;
+      AppState.cropUpload = null;
+      const galInput = document.getElementById('crop-gallery-input');
+      if (galInput) galInput.value = '';
+      renderCropUploadCard();
+    }
+
+    async function handleCropAnalyzeClick() {
+      if (!AppState.cropUpload?.base64) {
+        showToast(getActiveLang() === 'en' ? 'Please take or choose a photo first.' : 'कृपया पहले एक फोटो खींचें या चुनें।');
+        return;
+      }
+
+      const queryInput = document.getElementById('crop-text-input');
+      const customQuery = queryInput?.value?.trim() || AppState.activeForwardedCropQuery;
+
+      await runCropDiagnosis(AppState.cropUpload.base64, AppState.farmer.crop || 'Wheat', customQuery);
+    }
+
+    function handleCropQuestionSubmit() {
+      const input = document.getElementById('crop-text-input');
+      if (input && input.value.trim()) {
+        sendAssistantQuery(input.value.trim());
+      }
+    }
+
+    async function diagnoseSampleCrop(crop, issue) {
+      const sampleImage = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAxnqEgLQpypJX_kAeE6cc8_hidlvudkZ4isd4f-2tk7NKSp4VfGwFTuzu-gYeVb7bqI2nfBmw8Ic-83nGyk9V4ZMZx0x-Cm8bO7HlBM1VE3-XTmEbYdXGv9Wcvmeg_HNK7pLVQU7Z2BanZgvb1Yg5GRNBcsfsLaWrEGOMLeOe2txSTUQQo-yp-h4EtOTemhVOPT1Kj12LADyvGFh54ph12GANoErSDnVn5gc1gKtLc7ppdEOtPSGBj';
+      const isHi = getActiveLang() === 'hi';
+
+      renderAnalysisResultCard({
+        image: sampleImage,
+        crop: crop,
+        disease_name: isHi ? (issue === 'Yellow Rust' ? 'पीला रतुआ (Yellow Rust)' : 'अगेती झुलसा (Early Blight)') : issue,
+        confidence: isHi ? 'उच्च (98%)' : 'High (98%)',
+        observations: isHi ? [
+          'पत्तियों पर पीले-नारंगी रंग की पाउडर जैसी धारियां दिखाई दे रही हैं।',
+          'धब्बे मुख्य रूप से पत्तियों की नसों के समानांतर फैले हुए हैं।',
+          'निचली पत्तियों पर संक्रमण का असर अधिक दिखाई दे रहा है।'
+        ] : [
+          'Yellowish-orange powdery pustules forming distinct stripes.',
+          'Lesions appear parallel to the leaf veins.',
+          'Lower leaves appear more severely affected than upper leaves.'
+        ],
+        remedies: isHi ? [
+          'संक्रमित पत्तियों को अधिक फैलने से पहले अलग करें।',
+          'प्रोपिकोनाजोल 25% ईसी (Propiconazole 25% EC) @ 1 मिली प्रति लीटर पानी में मिलाकर तुरंत छिड़काव करें।',
+          'स्थानीय कृषि विज्ञान केंद्र (KVK) या कृषि विस्तार अधिकारी से परामर्श लें।'
+        ] : [
+          'Isolate infected plants if only localized patches are observed.',
+          'Apply recommended Propiconazole 25% EC @ 1ml/liter of water immediately.',
+          'Consult local Krishi Vigyan Kendra (KVK) extension officer before spraying.'
+        ],
+        prevention: isHi ? [
+          'अगली बुवाई के लिए रोग प्रतिरोधी प्रमाणित बीजों का ही उपयोग करें।',
+          'संतुलित एन:पी:के उर्वरकों का प्रयोग करें; यूरिया (नाइट्रोजन) की अत्यधिक मात्रा से बचें।',
+          'दलहनी फसलों के साथ फसल चक्र अपनाएं।'
+        ] : [
+          'Plant resistant certified seeds for the next sowing season.',
+          'Maintain balanced N:P:K fertilization; avoid excessive nitrogen doses.',
+          'Practice rotational cropping with legumes.'
+        ]
+      });
+    }
+
+    async function runCropDiagnosis(imageDataUri, crop, userCustomQuestion = null) {
+      const resultArea = document.getElementById('crop-analysis-result-area');
+      if (resultArea) {
+        resultArea.innerHTML = `
+          <div class="p-8 text-center text-primary font-medium flex flex-col items-center justify-center gap-3 bg-surface-container rounded-2xl border border-outline-variant shadow-sm mt-4 animate-pulse">
+            <span class="material-symbols-outlined text-4xl animate-spin">progress_activity</span>
+            <span class="font-headline-sm text-sm font-bold">${t('analyzingCrop')}</span>
+          </div>
+        `;
+        resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      try {
+        const isHi = getActiveLang() === 'hi';
+        const defaultQuestion = isHi
+          ? 'फसल रोग की पहचान करें, लक्षण बताएं, रासायनिक व जैविक उपचार और रोकथाम के उपाय बताएं।'
+          : 'Identify crop disease, visible symptoms, treatment remedies, and prevention tips.';
+
+        const questionToSend = userCustomQuestion || defaultQuestion;
+
+        const res = await apiFetch('/api/crop/analyze', {
+          method: 'POST',
+          body: JSON.stringify({
+            image: imageDataUri,
+            crop: crop,
+            question: questionToSend,
+            conversationId: 'conv-' + (AppState.farmer?.id || 'demo')
+          })
+        });
+
+        if (res.status === 'invalid_image') {
+          renderCropValidationWarningCard({
+            image: imageDataUri,
+            status: 'invalid_image',
+            imageType: 'non_plant',
+            message: res.message || (isHi
+              ? 'यह तस्वीर किसी पौधे या फसल की नहीं लगती। कृपया अपनी फसल की स्पष्ट तस्वीर अपलोड करें।'
+              : 'This image does not appear to contain a plant or crop. Please upload a clear photograph of your crop.')
+          });
+          return;
+        }
+
+        if (res.status === 'unclear') {
+          renderCropValidationWarningCard({
+            image: imageDataUri,
+            status: 'unclear',
+            imageType: 'unclear',
+            message: res.message || (isHi
+              ? 'फसल तस्वीर में स्पष्ट दिखाई नहीं दे रही है। कृपया प्रभावित हिस्से की नज़दीक से स्पष्ट तस्वीर लें।'
+              : 'The crop is not clear enough to analyze. Please take another close-up photograph.')
+          });
+          return;
+        }
+
+        if (res.status === 'analysis_failed' || res.status !== 'success') {
+          renderCropValidationWarningCard({
+            image: imageDataUri,
+            status: 'analysis_failed',
+            message: res.message || (isHi
+              ? 'फोटो का विश्लेषण नहीं हो सका। कृपया स्पष्ट फोटो के साथ पुनः प्रयास करें।'
+              : 'Unable to analyze image. Please try again.')
+          });
+          return;
+        }
+
+        const diagnosis = res.diagnosis || res;
+
+        renderAnalysisResultCard({
+          image: imageDataUri,
+          crop: diagnosis.crop || crop,
+          disease_name: diagnosis.possibleIssue || diagnosis.disease_name || (isHi ? 'स्वस्थ फसल' : 'Healthy Crop'),
+          confidence: diagnosis.confidence === 'high' ? (isHi ? 'उच्च (High)' : 'High') : diagnosis.confidence === 'low' ? (isHi ? 'निम्न (Low)' : 'Low') : (isHi ? 'मध्यम (Moderate)' : 'Moderate'),
+          observations: diagnosis.observations || [],
+          remedies: diagnosis.recommendedActions || diagnosis.remedies || diagnosis.chemical_treatment || [],
+          prevention: diagnosis.prevention || []
+        });
+      } catch (e) {
+        console.error('Crop diagnosis error:', e);
+        const isHi = getActiveLang() === 'hi';
+        const errMsg = e?.message || '';
+        const is503 = errMsg.includes('503') || errMsg.includes('GEMINI_VISION_UNAVAILABLE');
+        renderCropValidationWarningCard({
+          image: imageDataUri,
+          status: 'analysis_failed',
+          message: is503
+            ? (isHi ? 'Gemini Vision सेवा उपलब्ध नहीं है (GEMINI_API_KEY कॉन्फ़िगर नहीं है)।' : 'Gemini Vision is unavailable because GEMINI_API_KEY is not configured.')
+            : (isHi ? 'फोटो का विश्लेषण नहीं हो सका। कृपया स्पष्ट फोटो के साथ पुनः प्रयास करें।' : 'Unable to analyze image. Please try again.')
+        });
+      }
+    }
+
+    function renderCropValidationWarningCard(data) {
+      const resultArea = document.getElementById('crop-analysis-result-area');
+      if (!resultArea) return;
+
+      const isHi = getActiveLang() === 'hi';
+      let icon = 'image_not_supported';
+      let title = isHi ? 'पौधे या फसल की फोटो नहीं मिली' : 'No Plant / Crop Detected';
+
+      if (data.status === 'unclear') {
+        icon = 'visibility_off';
+        title = isHi ? 'अस्पष्ट फोटो (Unclear Image)' : 'Unclear Image';
+      } else if (data.status === 'analysis_failed') {
+        icon = 'error_outline';
+        title = isHi ? 'विश्लेषण विफल (Analysis Failed)' : 'Analysis Failed';
+      }
+
+      resultArea.innerHTML = `
+        <div class="flex flex-col gap-4 mt-6 animate-in fade-in duration-300">
+          <section class="bg-error-container/20 rounded-xl p-5 shadow-sm border border-error/30 flex flex-col gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-2xl">${icon}</span>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-headline-sm text-sm font-bold text-on-surface">${title}</h3>
+                <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">${data.message}</p>
+              </div>
+            </div>
+
+            <div class="mt-2 pt-3 border-t border-outline-variant/60 flex items-center gap-3">
+              <button onclick="triggerCropCamera()" class="flex-1 py-2.5 px-3 rounded-lg bg-primary text-on-primary text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[16px]">photo_camera</span>
+                <span>${t('openCamera')}</span>
+              </button>
+              <button onclick="triggerCropGallery()" class="flex-1 py-2.5 px-3 rounded-lg bg-surface-container border border-outline-variant text-primary text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all hover:bg-primary-container/30">
+                <span class="material-symbols-outlined text-[16px]">photo_library</span>
+                <span>${t('openGallery')}</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Help guidelines for taking crop photos -->
+          <section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant">
+            <h4 class="font-headline-sm text-xs text-primary font-bold flex items-center gap-1.5 mb-2">
+              <span class="material-symbols-outlined text-[16px]">lightbulb</span>
+              ${isHi ? 'सटीक जांच के लिए टिप्स' : 'Tips for Clear Crop Photo'}
+            </h4>
+            <ul class="list-disc list-inside text-on-surface-variant text-xs space-y-1">
+              <li>${isHi ? 'पौधे या प्रभावित पत्ती की नजदीक से साफ फोटो लें।' : 'Take a close-up, focused photo of the affected plant or leaf.'}</li>
+              <li>${isHi ? 'पर्याप्त प्राकृतिक रोशनी में फोटो खींचें।' : 'Ensure good daytime lighting and avoid camera shake.'}</li>
+              <li>${isHi ? 'केवल कृषि फसल या पत्तियों की फोटो अपलोड करें।' : 'Only upload agricultural crop foliage or infected plant parts.'}</li>
+            </ul>
+          </section>
+        </div>
+      `;
+    }
+
+    function renderAnalysisResultCard(data) {
+      const resultArea = document.getElementById('crop-analysis-result-area');
+      if (!resultArea) return;
+
+      const cropLocalized = translateCrop(data.crop);
+
+      resultArea.innerHTML = `
+        <div class="flex flex-col gap-4 mt-6 animate-in fade-in duration-300">
+          <!-- Image & Summary Card -->
+          <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+            <div class="w-full h-44 relative">
+              <img class="w-full h-full object-cover" src="${data.image}" alt="Crop Photo" />
+            </div>
+            <div class="p-4 flex flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs inline-flex items-center gap-1 font-bold">
+                  <span class="material-symbols-outlined text-[15px]">potted_plant</span> ${cropLocalized}
+                </span>
+                <span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full text-xs font-semibold">
+                  ${t('confidenceLabel')} ${data.confidence}
+                </span>
+              </div>
+              <h2 class="font-headline-sm text-base text-error mt-1 font-bold">${t('possibleIssue')} ${data.disease_name}</h2>
+            </div>
+          </section>
+
+          <!-- What AI Observed -->
+          <section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant">
+            <h3 class="font-headline-sm text-sm text-primary flex items-center gap-2 mb-2 font-bold">
+              <span class="material-symbols-outlined text-[18px]">visibility</span>
+              ${t('whatAiObserved')}
+            </h3>
+            <ul class="list-disc list-inside text-on-surface font-body-md space-y-1.5 text-xs">
+              ${data.observations.map(obs => `<li>${obs}</li>`).join('')}
+            </ul>
+          </section>
+
+          <!-- What you can do -->
+          <section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant">
+            <h3 class="font-headline-sm text-sm text-primary flex items-center gap-2 mb-2 font-bold">
+              <span class="material-symbols-outlined text-[18px]">healing</span>
+              ${t('whatYouCanDo')}
+            </h3>
+            <ol class="list-decimal list-inside text-on-surface font-body-md space-y-2 text-xs">
+              ${data.remedies.map(rem => `<li>${rem}</li>`).join('')}
+            </ol>
+          </section>
+
+          <!-- Prevention -->
+          <section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-outline-variant">
+            <h3 class="font-headline-sm text-sm text-primary flex items-center gap-2 mb-2 font-bold">
+              <span class="material-symbols-outlined text-[18px]">shield</span>
+              ${t('prevention')}
+            </h3>
+            <ul class="list-disc list-inside text-on-surface font-body-md space-y-1 text-xs">
+              ${data.prevention.map(prev => `<li>${prev}</li>`).join('')}
+            </ul>
+          </section>
+
+          <!-- Follow-up Question Input -->
+          <div class="bg-surface-container-lowest border border-outline-variant p-2 rounded-2xl shadow-sm">
+            <form onsubmit="event.preventDefault(); const val=document.getElementById('crop-followup-input').value; if(val){ sendAssistantQuery('${data.disease_name}: ' + val); }" class="relative flex items-center">
+              <input id="crop-followup-input" class="w-full h-11 pl-4 pr-12 rounded-full border border-outline-variant bg-surface text-xs text-on-surface placeholder-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" placeholder="${t('placeholderCropFollowup')}" type="text"/>
+              <button type="submit" aria-label="Send" class="absolute right-2 p-2 rounded-full text-primary hover:bg-surface-variant transition-colors">
+                <span class="material-symbols-outlined fill-icon text-[18px]">send</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Disclaimer Box -->
+          <div class="bg-surface-variant p-3.5 rounded-xl flex items-start gap-2.5 border border-outline-variant">
+            <span class="material-symbols-outlined text-on-surface-variant text-[18px] mt-0.5">info</span>
+            <p class="text-on-surface-variant text-[11px] leading-relaxed">${t('cropDisclaimer')}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 8. FLOATING AI ASSISTANT ORCHESTRATOR
+    // ==========================================
+    function openAssistantDrawer() {
+      const drawer = document.getElementById('assistant-drawer');
+      if (drawer) {
+        drawer.classList.remove('hidden');
+        document.getElementById('assistant-chat-input')?.focus();
+      }
+    }
+
+    function closeAssistantDrawer() {
+      const drawer = document.getElementById('assistant-drawer');
+      if (drawer) drawer.classList.add('hidden');
+    }
+
+    document.getElementById('close-assistant-btn')?.addEventListener('click', closeAssistantDrawer);
+
+    function handleAssistantFormSubmit() {
+      const input = document.getElementById('assistant-chat-input');
+      if (!input || !input.value.trim()) return;
+      const text = input.value.trim();
+      input.value = '';
+      sendAssistantQuery(text);
+    }
+
+    async function sendAssistantQuery(userMessage) {
+      openAssistantDrawer();
+      const messagesContainer = document.getElementById('assistant-chat-messages');
+
+      // Append User message
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex gap-2 items-start justify-end";
+      userBubble.innerHTML = `
+        <div class="bg-primary text-on-primary p-3 rounded-2xl rounded-tr-none text-body-md text-[14px] max-w-[80%] shadow-sm">
+          ${userMessage}
+        </div>
+        <div class="w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">${getActiveLang() === 'en' ? 'You' : 'आप'}</div>
+      `;
+      messagesContainer.appendChild(userBubble);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Loading bubble
+      const loadingBubble = document.createElement('div');
+      loadingBubble.className = "flex gap-2 items-start";
+      loadingBubble.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">KM</div>
+        <div class="bg-surface-container p-3 rounded-2xl rounded-tl-none border border-outline-variant/30 text-on-surface text-body-md text-[14px] animate-pulse">
+          ${t('thinking')}
+        </div>
+      `;
+      messagesContainer.appendChild(loadingBubble);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      try {
+        const response = await apiFetch('/api/assistant', {
+          method: 'POST',
+          body: JSON.stringify({
+            message: userMessage,
+            conversationId: 'conv-' + (AppState.farmer?.id || 'demo'),
+            pageContext: AppState.currentPath || '/home'
+          })
+        });
+
+        loadingBubble.remove();
+
+        const aiBubble = document.createElement('div');
+        aiBubble.className = "flex gap-2 items-start";
+        aiBubble.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">KM</div>
+          <div class="bg-surface-container p-3 rounded-2xl rounded-tl-none border border-outline-variant/30 text-on-surface text-body-md text-[14px]">
+            <p class="leading-relaxed whitespace-pre-line">${response.message || ''}</p>
+            ${response.action?.page ? `
+              <div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+                <span class="text-xs text-primary font-semibold">${t('navigatingTo')} ${response.action.page}...</span>
+                <button onclick="navigate('${response.action.page}', '${userMessage.replace(/'/g, "\\'")}')" class="text-xs bg-primary text-on-primary px-2.5 py-1 rounded-md font-bold">${t('btnOpenView')}</button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+        messagesContainer.appendChild(aiBubble);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Auto text-to-speech
+        speakText(response.message);
+
+        // Auto navigate if action returned
+        if (response.action && response.action.type === 'navigate' && response.action.page) {
+          setTimeout(() => {
+            navigate(response.action.page, userMessage);
+          }, 800);
+        }
+      } catch (err) {
+        loadingBubble.remove();
+        const errBubble = document.createElement('div');
+        errBubble.className = "flex gap-2 items-start";
+        errBubble.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">!</div>
+          <div class="bg-error-container text-on-error-container p-3 rounded-2xl rounded-tl-none text-body-md text-[13px]">
+            ${err.message || t('assistantError')}
+          </div>
+        `;
+        messagesContainer.appendChild(errBubble);
+      }
+    }
+
+    function toggleVoiceAssistant() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        showToast(t('voiceNotSupported'));
+        return;
+      }
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = getActiveLang() === 'en' ? 'en-IN' : 'hi-IN';
+      recognition.interimResults = false;
+
+      const micBtn = document.getElementById('assistant-mic-btn');
+      if (micBtn) micBtn.classList.add('animate-ping', 'bg-error', 'text-on-error');
+
+      showToast(t('voiceListening'));
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        if (transcript) {
+          sendAssistantQuery(transcript);
+        }
+      };
+      recognition.onend = () => {
+        if (micBtn) micBtn.classList.remove('animate-ping', 'bg-error', 'text-on-error');
+      };
+      recognition.onerror = () => {
+        if (micBtn) micBtn.classList.remove('animate-ping', 'bg-error', 'text-on-error');
+      };
+      recognition.start();
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window && text) {
+        try {
+          window.speechSynthesis.cancel();
+          const cleanText = text.replace(/[*#_`]/g, '');
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          utterance.lang = getActiveLang() === 'en' ? 'en-IN' : 'hi-IN';
+          utterance.rate = 1.0;
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          console.warn('Speech synthesis notice:', e);
+        }
+      }
+    }
+
+    // Initialize application on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ensureAuthenticated();
+      updateAllStaticLabels();
+      renderCurrentRoute();
+    });
+  </script>
+</body>
+</html>
